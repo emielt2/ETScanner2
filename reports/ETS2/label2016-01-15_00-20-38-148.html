@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Robots" content="index,follow" />
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-15031038-2']);
+        _gaq.push(['_trackPageview', location.pathname + location.hash]);
+
+        window.onhashchange = function() {
+            _gaq.push(['_trackPageview', location.pathname + location.hash]);
+        };
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="css/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="css/shThemeEclipse.css" />
+    <script language="javascript" src="js/jquery.js"></script>
+    <script language="javascript" src="js/shCore.js"></script>
+    <script language="javascript" src="js/shBrushGroovy.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.defaults['gutter'] = false;
+        SyntaxHighlighter.all();
+    </script>
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <title>Geb - Very Groovy Browser Automation</title>
+</head>
+
+<body>
+
+
+
+
+<div id="header-wrap">
+    <div id="header-content">
+
+        <h1 id="logo">
+            <a href="/" title="">Geb <span class="orange" style="font-size: 50%; font-style: italic">(pronounced “jeb”)</span></a>
+        </h1>
+
+        <h2 id="slogan">very groovy browser automation… web testing, screen scraping and more</h2>
+
+        <ul>
+            <li>
+                <span>Manual</span>
+                <ul class="link-list">
+                    <li><a href="manual/current/">0.12.2 - current</a></li>
+                    
+                    <li><a href="manual/0.12.1/">0.12.1</a></li>
+                    
+                    <li><a href="manual/0.12.0/">0.12.0</a></li>
+                    
+                    <li><a href="manual/0.10.0/">0.10.0</a></li>
+                    
+                    <li><a href="manual/0.9.3/">0.9.3</a></li>
+                    
+                    <li><a href="manual/0.9.2/">0.9.2</a></li>
+                    
+                    <li><a href="manual/0.9.1/">0.9.1</a></li>
+                    
+                    <li><a href="manual/0.9.0/">0.9.0</a></li>
+                    
+                    
+                    <li><a href="manual/snapshot/">1.0-SNAPSHOT</a></li>
+                    
+                </ul>
+            </li>
+            <li>
+                <span>API</span>
+                <ul class="link-list" id="api-list">
+                    <li><a href="manual/current/api/">0.12.2 - current</a></li>
+                    
+                    <li><a href="manual/0.12.1/api/">0.12.1</a></li>
+                    
+                    <li><a href="manual/0.12.0/api/">0.12.0</a></li>
+                    
+                    <li><a href="manual/0.10.0/api/">0.10.0</a></li>
+                    
+                    <li><a href="manual/0.9.3/api/">0.9.3</a></li>
+                    
+                    <li><a href="manual/0.9.2/api/">0.9.2</a></li>
+                    
+                    <li><a href="manual/0.9.1/api/">0.9.1</a></li>
+                    
+                    <li><a href="manual/0.9.0/api/">0.9.0</a></li>
+                    
+                    
+                    <li><a href="manual/snapshot/api/">1.0-SNAPSHOT</a></li>
+                    
+                </ul>
+            </li>
+            <li><a href="lists">Mailing Lists</a></li>
+            <li><a href="https://github.com/geb/issues/issues">Issues</a></li>
+            <li><a href="http://github.com/geb/geb">Code</a></li>
+            <li><a href="http://twitter.com/GebFramework">Twitter</a></li>
+        </ul>
+
+    </div>
+</div>
+
+<div id="content-wrap">
+    <div id="content">
+        <div id="main">
+            <h1>Cross Browser Automation</h1>
+
+<p>Geb leverages the <a href="http://code.google.com/p/selenium/">WebDriver</a> library for browser automation. This means that Geb works with any browser that WebDriver works with, and the list of browsers that WebDriver works with is growing all the time.</p>
+
+<p>The core supported browsers are:</p>
+
+<ul>
+    <li><a href="http://code.google.com/p/selenium/wiki/FirefoxDriver">Firefox</a></li>
+    <li><a href="http://code.google.com/p/selenium/wiki/InternetExplorerDriver">Internet Explorer</a></li>
+    <li><a href="http://code.google.com/p/selenium/wiki/ChromeDriver">Google Chrome</a></li>
+    <li><a href="http://www.opera.com/developer/tools/operadriver/" title="OperaDriver | Opera Developer Tools">Opera</a></li>
+</ul>
+
+<p>There is also experimental support for:</p>
+
+<ul>
+    <li><a href="http://code.google.com/p/selenium/wiki/AndroidDriver">Chrome on Android</a></li>
+    <li><a href="http://code.google.com/p/selenium/wiki/IPhoneDriver">Safari on iPhone &amp; iPad</a></li>
+</ul>
+
+<h1>Remote Browsers</h1>
+
+<p>WebDriver also supports <a href="http://code.google.com/p/selenium/wiki/RemoteWebDriver"><em>remote drivers</em></a>. This allows you to automate a browser running on another machine! This means you can easily run your test suite against an IE browser from the comfort of your Mac or Linux machine (and vice versa).</p>
+
+<h1>Headless Browsers</h1>
+
+<p>You can also use the headless, in process, Java browser emulator <a href="http://code.google.com/p/selenium/wiki/HtmlUnitDriver">HTMLUnit with WebDriver</a>.</p>
+
+<p>See the <a href="manual/current/#driver-implementation-configuration">driver configuration section of the manual</a> for information about setting up Geb to run with different drivers.</p>
+
+        </div>
+        <div id="sidebar">
+            
+            <h1>Highlights</h1>
+            <ul class="sidemenu">
+                
+                <li class="crossbrowser selected"><a href="crossbrowser">Cross Browser</a></li>
+                
+                <li class="content "><a href="content">jQuery-like API</a></li>
+                
+                <li class="pages "><a href="pages">Page Objects</a></li>
+                
+                <li class="async "><a href="async">Asynchronous Pages</a></li>
+                
+                <li class="testing "><a href="testing">Testing</a></li>
+                
+                <li class="integration "><a href="integration">Build Integration</a></li>
+                
+            </ul>
+            <h1>Build status</h1>
+            <a href="https://snap-ci.com/geb/geb/branch/master" target="_blank">
+                <img src="https://snap-ci.com/geb/geb/branch/master/build_image" alt="Build status" />
+            </a>
+            <h1>Latest version</h1>
+            <a href="https://maven-badges.herokuapp.com/maven-central/org.gebish/geb-core">
+                <img alt="Maven Central" src="https://maven-badges.herokuapp.com/maven-central/org.gebish/geb-core/badge.svg" />
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+<div id="footer-wrap">
+    <div id="footer-content">
+        <p>Geb is free, open source software licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html" title="Apache License, Version 2.0">Apache License, Version 2.0</a>.</p>
+
+        <p>This site is powered by <a href="http://ratpack.io" title="Ratpack - A toolkit for JVM web applications">Ratpack</a>.</p>
+    </div>
+</div>
+
+
+
+
+</body></html>
