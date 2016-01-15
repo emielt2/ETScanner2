@@ -20,23 +20,16 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.Arrays;
 //---
-import ETS2.ScanTest1;
-import geb.spock.GebReportingSpec;
-import org.openqa.selenium.By;
+//import ETS2.ScanTest1;
 //import pageobjects.afspraak.AfspraakOverlaysPage
 /*import pageobjects.afspraak.AfspraakPage
 import pageobjects.algemeen.KCCPage
 import pageobjects.algemeen.LoginPage
 import spock.lang.Stepwise*/
 import geb.Browser;
-import geb.spock.GebReportingSpec;
-import geb.spock.GebSpec;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.spockframework.runtime.SpockRuntime;
-import spock.lang.Specification;
 
-import geb.Browser;
 ///--
 public class ETS2_GUI extends Application {
     static int counter=0;
@@ -143,8 +136,10 @@ public class ETS2_GUI extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+/**
+ * End Auto browser
+ */
 
-        //butonGo extra
         buttonGo.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 statusText.setFill(Color.BLUE);
@@ -167,16 +162,10 @@ public class ETS2_GUI extends Application {
 
                 try {
                     System.out.println("Show clicked");
-                    //getDateString
+
                     FunctionsDaoETS2 funcs = new FunctionsDaoETS2();
                     System.out.println(funcs.getDateString());
-                    //browser1.stopSeleniumConnection();
-                    GroovyClassTest gct1 = new GroovyClassTest();
-                    //gct1.Step1gct();
-                    //gct1.Step2gctAlmostHurray();
-                    //gct1.Step3gctHurray();
-                    gct1.Step4gctKeepLooking();
-                    //System.exit(123);
+
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -193,81 +182,6 @@ public class ETS2_GUI extends Application {
                 try {
                     System.out.println("--------------------------clicked");
 
-                    GroovyClassTest gct1 = new GroovyClassTest();
-                    gct1.Step1gct();
-
-                    //gct1.startStep1();
-                    //gct1.main();
-                    //gct1.Step1gct();
-                    //gct1.Step2();
-                    //GroovyClassTest
-
-                    ScanTest1 stA=new ScanTest1();//
-                    ChromeOptions chromeoptions = new ChromeOptions();
-                    chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
-                    ChromeDriver driver = new ChromeDriver();
-                            //System.setProperty("webdriver.chrome.driver", "F:\\SeleniumDownloadFolder\\chromedriver_win32\\chromedriver.exe");
-                            //new ChromeDriver();
-
-	/*ChromeOptions chromeoptions = new ChromeOptions();
-        chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
-        def browser = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: 'http://gebish.org')*/
-
-                    String baseUrl= "http://gister.com";
-                    //final Browser browser = new Browser(driver= new ChromeDriver(chromeoptions), baseUrl= "http://gebish.org" );
-                    final Browser browser = new Browser();
-                    System.out.println(stA.get$spock_sharedField__browser());
-                    stA.set$spock_sharedField__browser(browser);
-                    stA.setGebConfScript("F:\\Users\\E\\ETScanner2\\src\\test\\resources\\GebConfig.groovy");
-                    stA.createBrowser();
-                    System.out.println(stA.get$spock_sharedField__browser());
-                    //stA.;
-                    //stA.MakeScreenshot2();
-                    //stA.StepHurray();
-                    //stA.StepAssertOne();
-                    TestGroovy2 tg = new TestGroovy2();
-                    //tg.GroovyMock();
-                    tg.get$spock_sharedField__browser();
-                    //tg.void3();
-
-                    //---
-
-                    ScreenshotReporter sr = new ScreenshotReporter();
-                    //browser.go("http://www.nrc.nl");
-                    sr.writeReport(new ReportState(browser,"label123",new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2")));
-
-                    //new MiniCaller().Mini2();
-                    ///----
-/*
-                    GebReportingSpec grs = new GebReportingSpec();
-                    //GebReportingSpec.class.newInstance().GroovyMock();
-                    System.out.println(grs.getGebReportingSpecTestName());
-                    TestName testname1 = new TestName();
-                    testname1.getMethodName();
-
-
-
-                    //
-                    // stA.MakeScreenshot2();
-                    //new SpecGroovyTest().stepSGT3();
-                    //ScanTest1.newInstance().StepHurray();
-                    //todo call with -gradle.bat?
-
-
-                    //browser1.printAllSelectorX(inputField1.getText(),inputField2.getText());//original?
-
-/*
-                    outputs = browser1.getAllSelectorX(inputField1.getText(),inputField2.getText());
-                    scenetitle2.setText("Try " + tryCounter++ +"\n");
-                    for(int i=0;i<5;i++){
-                        scenetitle2.setText(scenetitle2.getText().concat(outputs[i]).concat("\n"));
-                        //todo hier verder. geef gescande attr-mogelijkheden in extra textfield
-                    }
-                    NamedNodeMap nnm;
-                    ///*nnm =*/
-                    /*browser1.getNNM(inputField1.getText(),inputField2.getText());
-                    System.out.println("--------------------------");
-                    */
                 } catch (Exception e1) {
 
                     e1.printStackTrace();
