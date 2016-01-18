@@ -123,11 +123,12 @@ public class GroovyBrowserDaoETS2 {
 
     public String getSelectorText(String stringcss1,String stringcss2) {
         try {
-            String returnvalue = "startvalue"
+            String returnvalue = "startvaluex"
             //return driver.findElement(new By.ByCssSelector(stringcss)).getText();
 
             browser2.drive{
-                println "01--" + browser2.$("head")
+                try {
+                    /* println "01--" + browser2.$("head")
                 println "02--" + browser2.$(By.linkText("microsoft")).getClass()
                 println "03--" + browser2.$("div").find()
                 println "04--" + browser2.navigator.$(By.linkText("microsoft"))
@@ -154,43 +155,76 @@ public class GroovyBrowserDaoETS2 {
                 //println "13--" + browser2.$(x).getProperty("innerHTML")
                 println "14--" + browser2.$(x).getProperty("displayed")
                 //browser2.$(x).getAt("body")
-                println "15--" + browser2.$(x).getProperty(stringcss2)
+//                println "15--" + browser2.$(x).getProperty(stringcss2)
                 browser2.$(x).getMetaClass()
-                println "16--" + browser2.$(stringcss1).getProperty(stringcss2)
-                returnvalue=browser2.$(stringcss1).getProperty(stringcss2)
+//                println "16--" + browser2.$(stringcss1).getProperty(stringcss2)
+//
+//                returnvalue=browser2.$(stringcss1).getProperty(stringcss2)
                 //browser2.$(x).click() //PRIMA VOOR KLIK
+//                println "16--" + browser2.$(stringcss1).getProperty(stringcss2)
+*/
+                    // driver.findElement(new By.ByCssSelector(stringcss1)).getAttribute("innerHTML")
+                    //browser2.findElement(new By.ByCssSelector(stringcss1)).getAttribute("innerHTML")
+                    /**NICE FINDELEMENT: browser2.getDriver().findElement(By.className(stringcss1)).click();*/
+//                browser2.getDriver().findElement(By.className(stringcss1)).click();
+                    //returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute(stringcss2);
+                    println "HIER1"
+                    returnvalue = browser2.getDriver().findElement(new By.ByCssSelector(stringcss1)).getAttribute(stringcss2);
+                    //returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute("innerHTML");
+                    /**NICE FINDELEMENT innerHTML returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute("innerHTML");*/
 
+                    //  browser.getDrive
+                    //Browser.getDriver().findElement();
 
-                //println "09b--" + browser2.$(x).getText()
-                //browser2.$("#srv_shellHeaderMicrosoftLogo").click()
-                //CssSelector
-                //stringcss = "title:"Zoeken in-/uitschakelen""
-                //CssSelector c1 = "title=Zoeken in-/uitschakelen"
+                    //CssSelector cssSelector1 = new CssSelector();
+                    //By myby1 = new By("a");
 
-                //browser2.$(title:"Zoeken in-/uitschakelen").click()// DEZE WERKT PRIMA als browser al in static wordt aangemaakt
-                //$(title:"Zoeken in-/uitschakelen").click()
-                //println "10--" + browser2.$(title:"Zoeken in-/uitschakelen").toString()
+                    //println "09b--" + browser2.$(x).getText()
+                    //browser2.$("#srv_shellHeaderMicrosoftLogo").click()
+                    //CssSelector
+                    //stringcss = "title:"Zoeken in-/uitschakelen""
+                    //CssSelector c1 = "title=Zoeken in-/uitschakelen"
+
+                    //browser2.$(title:"Zoeken in-/uitschakelen").click()// DEZE WERKT PRIMA als browser al in static wordt aangemaakt
+                    //$(title:"Zoeken in-/uitschakelen").click()
+                    //println "10--" + browser2.$(title:"Zoeken in-/uitschakelen").toString()
 
 //                CssSelector c1 = new CssSelector("Zoeken inuitschakelen")
-              //  browser2.$(c1).click()
-                //browser2.$(c1).click()
-               //browser2.$(By.title("Zoeken in-/uitschakelen"))
-                //title="Zoeken in-/uitschakelen"
+                    //  browser2.$(c1).click()
+                    //browser2.$(c1).click()
+                    //browser2.$(By.title("Zoeken in-/uitschakelen"))
+                    //title="Zoeken in-/uitschakelen"
+                    println "HIER2"
+                }
+                catch (Exception e){
+                    println "HIER3"
+                    returnvalue = e.message.toString();
+                }
             }
+            println "HIER4"
             return returnvalue
             //return browser1.findElement(new By.ByCssSelector(stringcss)).getText();
         }
         catch(NoSuchElementException e){
-            e.printStackTrace();
-            return "NOT FOUND";
+            //e.printStackTrace();
+
+            println "Exception not found"
+            //return "NOT FOUND";
+            return e.message.toString();
         }
     }
 
     public static String getThis(String stringcss1, String stringcss2) {
         String returnvalue
         browser2.drive{
-            returnvalue = browser2.$(stringcss1).getProperties()
+            try{
+                returnvalue = browser2.$(stringcss1).getProperties()
             }
+            catch (Exception e){
+                return e.message.toString();
+            }
+
+        }
         return returnvalue
     }
 

@@ -8,10 +8,9 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -54,24 +53,30 @@ public class ETS2_GUI extends Application {
         Button button08SaveToSql = new Button("SaveToSql");
         Button button09Report = new Button("Report");
         final Button button10ClickSandbox = new Button("ClickSandbox");
+        Button button11SpockGet = new Button("SpockGet");
+        Button button12GebGet = new Button("GebGet");
+        Button button13MakeCopyableItem = new Button("Make item");
 //-------------------------------
         final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
         checkbox1.setSelected(true);
         final CheckBox checkbox2 = new CheckBox("HTML");//.setselected?
         checkbox2.setSelected(true);
 //-------------------------------
-        HBox hBox1 = new HBox(40);
+        HBox hBox1 = new HBox(40);//for Connectionactions
         hBox1.setSpacing(3);
-        HBox hBox2 = new HBox(40);
-        HBox hBox3 = new HBox(40);
+        HBox hBox2 = new HBox(40);//voor input1
+        HBox hBox3 = new HBox(40);//voor gebspock
+        HBox hBox4 = new HBox(40);//voor reports
+
         //HBox hBox4 = new HBox(40);
-        VBox vBox1 = new VBox(40);
+        VBox vBox1 = new VBox(40);//voor knoppen Driver
         vBox1.setSpacing(3);
-        VBox vBox2 = new VBox(40);//New!!
+        VBox vBox2 = new VBox(40);//voor scenetitle2
+        VBox vBox3 = new VBox(40);//voor knoppen GebSpock
 //-------------------------------
         /*alles is standaard topleft //hBox1.setAlignment(Pos.TOP_LEFT);
         hBox2.setAlignment(Pos.TOP_LEFT);
-        hBox3.setAlignment(Pos.TOP_LEFT);
+        hBox4.setAlignment(Pos.TOP_LEFT);
         //hBox4.setAlignment(Pos.TOP_LEFT);
         vBox1.setAlignment(Pos.TOP_LEFT);
         vBox2.setAlignment(Pos.TOP_RIGHT);
@@ -81,19 +86,29 @@ public class ETS2_GUI extends Application {
 //--------------------------------
         Separator sepHor1 = new Separator();
         Separator sepHor2 = new Separator();
+        Separator sepHor3 = new Separator();
         Separator sepVer = new Separator();//Vertical separator
-        sepHor1.setMinWidth(300);
-        sepHor1.setLayoutX(100);
+        sepHor1.setMinWidth(360);
+        sepHor2.setMinWidth(360);
+        sepHor3.setMinWidth(360);
         sepVer.setOrientation(Orientation.VERTICAL);//Vertical separator
+        BackgroundFill bgf1 = new BackgroundFill(Paint.valueOf("123"), CornerRadii.EMPTY, Insets.EMPTY);
+        sepHor1.setBackground(new Background(bgf1));
+        sepHor2.setBackground(new Background(bgf1));
+        sepHor3.setBackground(new Background(bgf1));
 //--------------------------------
         final Text statusText = new Text();
         final Text scenetitle1 = new Text("Welcome Citizen47281");
         final Text scenetitle2 = new Text("Last results:");
+        final Text textConnection = new Text("Connection:");
+        final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
         final TextField urlInputField = new TextField("http://www.ad.nl/");
-        //final TextField inputField1 = new TextField("header");
-        final TextField inputField1 = new TextField("li.crossbrowser");
+        final TextField inputField1 = new TextField("crossbrowser");
+        final TextField inputField2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
+        final TextField inputField3 = new TextField("id");
+        final TextField inputField4 = new TextField("#crossbrowser");
+        final TextField inputField5 = new TextField("click()");
 
-        final TextField inputField2 = new TextField("displayed");//innerHTML was mooi.  getProperties niet goed.
         urlInputField.setAlignment(Pos.TOP_LEFT);
         scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
@@ -104,10 +119,11 @@ public class ETS2_GUI extends Application {
         hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
         hBox2.getChildren().addAll(inputField1,inputField2);
         vBox1.getChildren().addAll(button03Information,button04MouseOver,button05InfoAttribute,button06MouseClick,button07InfoGebSpockForms,button08SaveToSql);
-        hBox3.getChildren().addAll(checkbox1,checkbox2,button09Report);
+        hBox3.getChildren().addAll(inputField3,inputField4,inputField5);
+        hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
         vBox2.getChildren().add(scenetitle2);
-
-        vBox2.setStyle("-fx-border-color: red;");
+        vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem);
+        vBox2.setStyle("-fx-border-color: black;");
         vBox2.setMaxWidth(500);
         vBox2.setMinWidth(500);
         vBox2.setFillWidth(true);
@@ -199,7 +215,7 @@ public class ETS2_GUI extends Application {
                 try {
                     System.out.println("button03Information clicked");
                     //System.out.println(groovybrowser.getSelectorText(inputField1.getText()));
-                    System.out.println(groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText()));
+                    //System.out.println(groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText()));
                     scenetitle2.setText((groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText())));
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -272,17 +288,25 @@ public class ETS2_GUI extends Application {
  * Setting content of grids
  *
  */
-        grid1.add(hBox1, 0, 0);
-        grid1.add(hBox2, 0, 1);
-        grid1.add(hBox3, 0, 3);
-        grid1.add(scenetitle1,0,4);
-        //grid1.add(hBox4, 0, 4);
-        grid1.add(vBox1, 0, 2);
+        int grid1leftcounter=0;
+        grid1.add(textConnection, 0, grid1leftcounter++);
+        grid1.add(hBox1, 0, grid1leftcounter++);
+        grid1.add(sepHor1,0,grid1leftcounter++);
+        grid1.add(textDrivFindElAtt, 0, grid1leftcounter++);
+        grid1.add(hBox2, 0, grid1leftcounter++);
+        grid1.add(vBox1, 0, grid1leftcounter++);
+        grid1.add(sepHor2,0,grid1leftcounter++);
+        grid1.add(hBox3,0,grid1leftcounter++);
+        grid1.add(sepHor3,0,grid1leftcounter++);
+        grid1.add(hBox4, 0, grid1leftcounter++);
+        grid1.add(scenetitle1,0,grid1leftcounter++);
+        //grid1.add(hBox4, 0, grid1leftcounter++);
+
         grid1.add(vBox2, 1, 0,1,30);
-        //grid1.add(sepHor1,0,1);
+
         //GridPane grid2 = new GridPane();
         //Label userName = new Label("FROM valuta:");
-        primaryStage.setScene(new Scene(grid1, 900, 700));
+        primaryStage.setScene(new Scene(grid1, 900, 900));
         //todo add stuff to scene ofzo  https://community.oracle.com/thread/2587213?start=0&tstart=0
         primaryStage.getScene().fillProperty();
         primaryStage.alwaysOnTopProperty();
