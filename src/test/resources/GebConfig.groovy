@@ -242,7 +242,7 @@ driver = {
     //    def browser = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: 'http://gebish.org')
 }
 */
-
+//static def browser2 = new Browser(driver: new ChromeDriver(), baseUrl: 'http://nu.nl')//(new ChromeDriver());
 
 /**INFO ENVVIRONMENT UITZOEKEN misschien daardoor crossed browser = nee komt door nieuwe brower.drive
  */

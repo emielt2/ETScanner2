@@ -31,60 +31,74 @@ import static org.junit.Assert.fail;
 /**
  * Created by E on 29/12/2015.
  */
-public class SeleniumDaoETS2 {
-    public SeleniumDaoETS2(String input){
+public class BrowserDaoETS2 {
+    //static ChromeOptions chromeoptions = new ChromeOptions();
+    //WebDriver driver = new ChromeDriver(chromeoptions.addArguments("start-maximized"));
+    public BrowserDaoETS2(String input){
         baseUrl = input;
+
+       // chromeoptions.addArguments("start-maximized");
+      //  chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
+        browser1.setBaseUrl(input);
+        // idee voor global
+        //    browser1.setDriver(driver);
+
     }
-    static WebDriver driver;// idee voor global
+
+
     static String baseUrl; //idee voor global
-    //private static WebDriver driver;
-   // private static String baseUrl;
+    private static WebDriver driver;
+     //private static String baseUrl;
     private boolean acceptNextAlert = true;
     private static StringBuffer verificationErrors = new StringBuffer();
 
 
-
-    public static void startSeleniumConnection() throws Exception {
+    final static Browser browser1 = new Browser();//(new ChromeDriver());
+    public static void startSeleniumConnection(String inputUrl) throws Exception {
         System.out.println("Check1 " + baseUrl);
         //driver = new FirefoxDriver();
         System.setProperty("webdriver.chrome.driver", "F:\\SeleniumDownloadFolder\\chromedriver_win32\\chromedriver.exe");//todo setproperty bekijken
         ChromeOptions chromeoptions = new ChromeOptions();
         //chromeoptions.addArguments("start-maximized");
-        //options.addArguments("user-data-dir=/path/to/your/custom/profile");
+        //chromeoptions.addArguments("user-data-dir=/path/to/your/custom/profile");
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
         driver = new ChromeDriver(chromeoptions);
+        //driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+        //Browser browser2 = new Browser(driver:)
 
-        //File file = new File("C:/EmielUserDATA/H-DISK/ALL_JAVA_SELENIUM/JAR_LIB/IEDriverServer_x64_2.45.0/IEDriverServer.exe");
-        //System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-        //WebDriver driver = new InternetExplorerDriver();
-        //driver = new InternetExplorerDriver();
 
-       // baseUrl = "https://www.google.nl/";
-        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+        //browser1.setDriver(new ChromeDriver());
+
+        //browser1.setBaseUrl(inputUrl);
+        //browser1.go();
+        driver.get(inputUrl);
+
+
         System.out.println("Check3");
         //driver.get(baseUrl + "/?gws_rd=ssl");
-        driver.get(baseUrl /*+ inputURL*/);
+        //driver.get(baseUrl /*+ inputURL*/);
     }
     public static void stopSeleniumConnection() throws Exception {
         //Thread.sleep(1000);
+        //browser1.close();-----
         driver.close();
         //Thread.sleep(500);
-        driver.quit();
+//        driver.quit();
         String verificationErrorString = verificationErrors.toString();
         if (!"".equals(verificationErrorString)) {
             fail(verificationErrorString);
         }
     }
 
-   public boolean trigIsSelected() {
+    public boolean trigIsSelected() {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         try{
             if(driver.findElement(By.id("menu")).isDisplayed())return true;
             if(driver.findElement(By.id("menu")).getText()!="Statistics")return false;
         }
         catch(Exception e){
-        System.out.println("#menu not found");
-           // e.printStackTrace();
+            System.out.println("#menu not found");
+            // e.printStackTrace();
             return false;
         }
         return true;
@@ -93,6 +107,7 @@ public class SeleniumDaoETS2 {
     public String getSelectorText(String stringcss) {
         try {
             return driver.findElement(new By.ByCssSelector(stringcss)).getText();
+            //return browser1.findElement(new By.ByCssSelector(stringcss)).getText();
         }
         catch(NoSuchElementException e){
             e.printStackTrace();
@@ -117,6 +132,7 @@ public class SeleniumDaoETS2 {
             System.out.println(
                     "getTagName() gives: " +
                             driver.findElement(new By.ByCssSelector(stringcss1)).getTagName()
+                            //browser1.findElement(new By.ByCssSelector(stringcss1)).getTagName()
             );
             System.out.println(
                     "getText() gives: " +
@@ -208,14 +224,13 @@ public class SeleniumDaoETS2 {
 
     public void mouseClick(String cssstring1) {
         try {
-           //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
-           // driver.findElement(By.cssSelector(cssstring1)).click();
+            //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
+            // driver.findElement(By.cssSelector(cssstring1)).click();
             //driver.findElement(new By.ByPartialLinkText("TEXTS")).click();
             driver.findElement(new By.ByPartialLinkText(cssstring1)).click();
-
 //todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
             //driver.findElement(By.linkText("Texts")).click();
-           // driver.findElement(new By.ByLinkText("Texts")).click();
+            // driver.findElement(new By.ByLinkText("Texts")).click();
             //driver.findElement(new By.ByCssSelector("#tooltip > div > div.data > b:nth-child(1)"));
         } catch (Exception e) {
             //e.printStackTrace();
@@ -223,25 +238,38 @@ public class SeleniumDaoETS2 {
         }
     }
 
-    public void MakeScreenshot(){
+    public void makeReport(){
+
+/*
         Browser b = new Browser();
         Browser b1 = new Browser();//(new ChromeDriver());
         b1.setDriver(new ChromeDriver());
-        /*ScreenshotReporter sr = new ScreenshotReporter();
-        browser.go("http://www.nrc.nl");
-        sr.writeReport(new ReportState(browser,"label123",new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2")));
-        */
-        /*
+        b1.go("http://www.liveleak.com");
+*/
+
+
+//TODO
+        ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
+        //ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
+        ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
+        //browser1 komt van bovenaan DAOets
+        screenshotReporter1.writeReport(reportstate1);
+      /*
+        ScreenshotReporter sr = new ScreenshotReporter();
+        //browser1.go("http://www.nrc.nl");
+        sr.writeReport(new ReportState(browser1,"label123",new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2")));
+
+
         ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
         //ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-        //ReportState reportstate1 = new ReportState(browser,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-        ReportState reportstate1 = new ReportState(driver,"label123",new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
+        ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
+        //ReportState reportstate1 = new ReportState(browser1,"label123",new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
         //reportstate.setProperty("class",geb.report.Base64);
         //reportstate.setProperty();
         screenshotReporter1.writeReport(reportstate1);
         PageSourceReporter pageSourceReporter1 = new PageSourceReporter();
         pageSourceReporter1.writeReport(reportstate1);
-        */
+*/
     }
 }
 /*

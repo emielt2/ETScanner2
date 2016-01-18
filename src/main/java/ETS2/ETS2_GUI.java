@@ -1,6 +1,5 @@
 package ETS2;
-import geb.report.ReportState;
-import geb.report.ScreenshotReporter;
+//import geb.Browser;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,13 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.Arrays;
 //---
 //import ETS2.ScanTest1;
@@ -26,9 +25,6 @@ import java.util.Arrays;
 import pageobjects.algemeen.KCCPage
 import pageobjects.algemeen.LoginPage
 import spock.lang.Stepwise*/
-import geb.Browser;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 ///--
 public class ETS2_GUI extends Application {
@@ -42,169 +38,120 @@ public class ETS2_GUI extends Application {
         primaryStage.setTitle("ETScanner2.0");
         GridPane grid1 = new GridPane();
         grid1.setAlignment(Pos.TOP_LEFT);
-        grid1.setHgap(10);
-        grid1.setVgap(10);
-        grid1.setPadding(new Insets(25, 25, 25, 25));
-//--buttonGo
-        Button buttonGo = new Button("Open session URL");//buttonGo
-        HBox hbButtonGo = new HBox(40);//buttonGo
-        hbButtonGo.setAlignment(Pos.TOP_RIGHT);//buttonGo
-        hbButtonGo.getChildren().add(buttonGo);//buttonGo
-        grid1.add(hbButtonGo, 1, 0);//buttonGo
-///---
-        //---
-        Button buttonCloseSession = new Button("Close session--REPORT--------");
-        HBox hdButtonCloseSession = new HBox(40);
-        hdButtonCloseSession.setAlignment(Pos.TOP_RIGHT);
-        hdButtonCloseSession.getChildren().add(buttonCloseSession);
-        grid1.add(hdButtonCloseSession, 2, 0);
-        ///---
-        //---
-
-        final Button buttonClicking = new Button("---CLICKCLICK---");
-        HBox hbButtonClicking = new HBox(40);
-        hbButtonClicking.setAlignment(Pos.TOP_LEFT);
+        grid1.setHgap(5);
+        grid1.setVgap(5);
+        grid1.setPadding(new Insets(1, 25, 25, 25));
 
 
-        //--checkbox
-        final CheckBox cb1 = new CheckBox("CheckBox cb1");
-        cb1.setSelected(true);
-        //grid1.add(cb1,3,0);
+//---------------------------------
+        Button button01OpenSession = new Button("Open session URL");//button01OpenSession
+        Button button02CloseSession = new Button("Close session");
+        Button button03Information = new Button("Information");
+        Button button04MouseOver = new Button("MouseOver");
+        Button button05InfoAttribute = new Button("Attribute info");
+        Button button06MouseClick = new Button("MouseClick");
+        Button button07InfoGebSpockForms = new Button("InfoGebSpockForms");
+        Button button08SaveToSql = new Button("SaveToSql");
+        Button button09Report = new Button("Report");
+        final Button button10ClickSandbox = new Button("ClickSandbox");
+//-------------------------------
+        final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
+        checkbox1.setSelected(true);
+        final CheckBox checkbox2 = new CheckBox("HTML");//.setselected?
+        checkbox2.setSelected(true);
+//-------------------------------
+        HBox hBox1 = new HBox(40);
+        hBox1.setSpacing(3);
+        HBox hBox2 = new HBox(40);
+        HBox hBox3 = new HBox(40);
+        //HBox hBox4 = new HBox(40);
+        VBox vBox1 = new VBox(40);
+        vBox1.setSpacing(3);
+        VBox vBox2 = new VBox(40);//New!!
+//-------------------------------
+        /*alles is standaard topleft //hBox1.setAlignment(Pos.TOP_LEFT);
+        hBox2.setAlignment(Pos.TOP_LEFT);
+        hBox3.setAlignment(Pos.TOP_LEFT);
+        //hBox4.setAlignment(Pos.TOP_LEFT);
+        vBox1.setAlignment(Pos.TOP_LEFT);
+        vBox2.setAlignment(Pos.TOP_RIGHT);
+*/
+//--------------------------------
 
-        //grid1.add(cb1);
-
-
-        grid1.add(hbButtonClicking, 1, 3);
-///-----
-        ///---
-        //---
-
-        Button buttonMouseOver = new Button("MouseOver");
-        HBox hbButtonMouseOver = new HBox(40);
-        hbButtonMouseOver.setAlignment(Pos.TOP_LEFT);
-        hbButtonMouseOver.getChildren().add(buttonMouseOver);
-       // grid1.add(hbButtonMouseOver, 1, 7);
-
-        ///---
-
-        //---
-
-        Button buttonMouseClick = new Button("MouseClick");
-        HBox hbButtonMouseClick = new HBox(40);
-        hbButtonMouseClick.setAlignment(Pos.TOP_LEFT);
-        hbButtonMouseClick.getChildren().add(buttonMouseClick);
-        //grid1.add(hbButtonMouseClick, 1, 8);
-        hbButtonClicking.getChildren().addAll(buttonClicking,buttonMouseOver,buttonMouseClick);
-        ///---
-
-
+//--------------------------------
         Separator sepHor1 = new Separator();
-        sepHor1.setMinWidth(300);
-        sepHor1.setLayoutX(100);
-        grid1.add(sepHor1,0,4);
         Separator sepHor2 = new Separator();
         Separator sepVer = new Separator();//Vertical separator
+        sepHor1.setMinWidth(300);
+        sepHor1.setLayoutX(100);
         sepVer.setOrientation(Orientation.VERTICAL);//Vertical separator
+//--------------------------------
         final Text statusText = new Text();
-        //grid1.add(statusText, 1, 6);
         Text scenetitle = new Text("Welcome Citizen47281");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        //grid1.add(scenetitle, 0, 1/*, 1, 1*/);
-
         final Text scenetitle2 = new Text("Last results:");
+        final TextField urlInputField = new TextField("http://www.ad.nl/");
+        //final TextField inputField1 = new TextField("header");
+        final TextField inputField1 = new TextField("li.crossbrowser");
+
+        final TextField inputField2 = new TextField("displayed");//innerHTML was mooi.  getProperties niet goed.
+        urlInputField.setAlignment(Pos.TOP_LEFT);
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        scenetitle2.setText("scenetitle2");
+        scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
+//--------------------------------
+        hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
+        hBox2.getChildren().addAll(inputField1,inputField2);
+        vBox1.getChildren().addAll(button03Information,button04MouseOver,button05InfoAttribute,button06MouseClick,button07InfoGebSpockForms,button08SaveToSql);
+        hBox3.getChildren().addAll(checkbox1,checkbox2,button09Report);
+        vBox2.getChildren().add(scenetitle2);
+
+        vBox2.setStyle("-fx-border-color: red;");
+        vBox2.setMaxWidth(500);
+        vBox2.setMinWidth(500);
+        vBox2.setFillWidth(true);
+
+//--------------------------------
         Arrays.fill(outputs, "---");
-        scenetitle2.setText("");
         for(int i=0;i<5;i++){
             scenetitle2.setText(scenetitle2.getText().concat(outputs[i]).concat("\n"));
         }
-        scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
-        grid1.add(scenetitle2, 0, 5, 2, 1);
-
-        //final TextField urlInputField = new TextField("http://orteil.dashnet.org/cookieclicker/");
-        final TextField urlInputField = new TextField("http://genius.com/forums");
-        urlInputField.setAlignment(Pos.TOP_LEFT);
-
-        final TextField inputField1 = new TextField("header");
-        final TextField inputField2 = new TextField("innerHTML");
-        final SeleniumDaoETS2 browser1 = new SeleniumDaoETS2(urlInputField.getText());
+//--------------------------------
+        //final SeleniumDaoETS2 seleniumInstance1 = new SeleniumDaoETS2(urlInputField.getText());
+        //final BrowserDaoETS2 browserInstance1 = new BrowserDaoETS2(urlInputField.getText());
+        final GroovyBrowserDaoETS2 groovybrowser = new GroovyBrowserDaoETS2(urlInputField.getText());
+//--------------------------------
 
         /**
-         * Start Auto browser
-         */
-        try {
-           // browser1.startSeleniumConnection();
+        * Start Auto browser
+        */
+                try {
+                    groovybrowser.startSeleniumConnection(urlInputField.getText());
+           // seleniumInstance1.startSeleniumConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
-/**
- * End Auto browser
- */
-
-        buttonGo.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                statusText.setFill(Color.BLUE);
-                statusText.setText("Processing... " + counter ++);
-                try {
-                    System.out.println("Go clicked");
-                    browser1.startSeleniumConnection();//groovy test
+        /**
+         * End Auto browser
+         */
 
 
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-
-        buttonCloseSession.setOnAction(new EventHandler<ActionEvent>() {
-
-            public void handle(ActionEvent e) {
-
-                try {
-                    System.out.println("Show clicked");
-
-                    FunctionsDaoETS2 funcs = new FunctionsDaoETS2();
-                    System.out.println(funcs.getDateString());
-
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-
-        buttonClicking.setOnAction(new EventHandler<ActionEvent>() {
-
-
-            //    #cart-icon
-            //      span#cart-count
-            public void handle(ActionEvent e) {
-
-                try {
-                    System.out.println("--------------------------clicked");
-
-                } catch (Exception e1) {
-
-                    e1.printStackTrace();
-                }
-            }
-        });
-        //inputField2.setOnAction(););
         inputField1.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                try {
-                    System.out.println("Go clicked");
-                    buttonClicking.fire();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                                    public void handle(ActionEvent e) {
+                                        try {
+                                            System.out.println("Go clicked");
+                                            button10ClickSandbox.fire();
+                                        } catch (Exception e1) {
+                                            e1.printStackTrace();
+                                        }
+                                    }
+                                }
+        );
 
-            }
-        });
         inputField2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("Go clicked");
-                    buttonClicking.fire();
+                    button10ClickSandbox.fire();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -212,28 +159,32 @@ public class ETS2_GUI extends Application {
             }
         });
 
-//TODO maak scanbutton
-        buttonMouseOver.setOnAction(new EventHandler<ActionEvent>() {
-
+        button01OpenSession.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-
+                //statusText.setFill(Color.BLUE);
+                //statusText.setText("Processing... " + counter ++);
                 try {
-                    System.out.println("buttonMouseOver clicked");
-                    browser1.mouseOver(inputField1.getText());
+                    System.out.println("button01OpenSession clicked");
+                    //seleniumInstance1.startSeleniumConnection();//groovy test
+                    //                    browserInstance1.startSeleniumConnection();//groovy test
+                    //browserInstance1.startSeleniumConnection(urlInputField.getText());
+                    groovybrowser.startSeleniumConnection(urlInputField.getText());
+                    //BrowserDaoETS2.startSeleniumConnection();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
         });
 
-        buttonMouseClick.setOnAction(new EventHandler<ActionEvent>() {
-//todo betere clicker maken
+        button02CloseSession.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-
                 try {
-                    System.out.println("Mouseclick clicked");
-                    browser1.mouseClick(inputField1.getText());
-                 //   browser1.buyNextItem();
+                    System.out.println("button02CloseSession clicked");
+                    FunctionsDaoETS2 funcs = new FunctionsDaoETS2();
+                    System.out.println(funcs.getDateString());
+                    //BrowserDaoETS2.stopSeleniumConnection();
+                    //browserInstance1.stopSeleniumConnection();
+                    groovybrowser.stopSeleniumConnection();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -241,25 +192,119 @@ public class ETS2_GUI extends Application {
         });
 
 
+        button03Information.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    System.out.println("button03Information clicked");
+                    //System.out.println(groovybrowser.getSelectorText(inputField1.getText()));
+                    System.out.println(groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText()));
+                    scenetitle2.setText((groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText())));
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
-//--SETTING CONTENT OF GRIDS
-       GridPane grid2 = new GridPane();
-        Label userName = new Label("FROM valuta:");
-        //grid1.add(userName, 0, 3);
-        grid1.add(urlInputField, 0, 0);
-        //String input1=urlInputField.getText();
-        grid1.add(inputField1, 0, 1);
-        grid1.add(inputField2, 1, 1);
+        button04MouseOver.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    System.out.println("button04MouseOver clicked");
+                    //seleniumInstance1.mouseOver(inputField1.getText());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+//button05InfoAttribute
+        button05InfoAttribute.setOnAction(new EventHandler<ActionEvent>() {
+                                           public void handle(ActionEvent e) {
+                                               try {
+                                                   System.out.println("button05InfoAttribute clicked");
+                                                   String temp = groovybrowser.getThis(inputField1.getText(),"getProperties()");
+                                                   System.out.println("temp = " + temp);
+                                                   scenetitle2.setText(temp);
+                                               } catch (Exception e1) {
+                                                   e1.printStackTrace();
+                                               }
+                                           }
+                                       }
+        );
 
-//        grid1.add(table,2,0,1,70);
 
-        primaryStage.setScene(new Scene(grid1, 900, 500));
+        button06MouseClick.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    System.out.println("button06MouseClick clicked");
+                    //seleniumInstance1.mouseClick(inputField1.getText());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        );
+
+
+        button09Report.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    //------
+/*
+                    ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
+                    //ReportState reportstate1 = new ReportState(seleniumInstance1,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
+                    //ReportState reportstate1 = new ReportState(browser,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
+                    ReportState reportstate1 = new ReportState(seleniumInstance1,"label123",new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
+                    //reportstate.setProperty("class",geb.report.Base64);
+                    //reportstate.setProperty();
+                    screenshotReporter1.writeReport(reportstate1);
+                    PageSourceReporter pageSourceReporter1 = new PageSourceReporter();
+                    pageSourceReporter1.writeReport(reportstate1);*/
+                    ///-----
+
+                    System.out.println("button09Report clicked");
+                    //seleniumInstance1.mouseOver(inputField1.getText());
+                    //BrowserDaoETS2 browser1 = new BrowserDaoETS2("http://www.break.com");
+                    //BrowserDaoETS2.make
+                    //browserInstance1.makeReport();
+                    //seleniumInstance1.makeReport();
+                    groovybrowser.makeReport();
+
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        button10ClickSandbox.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+/**
+ * Setting content of grids
+ *
+ */
+        grid1.add(hBox1, 0, 0);
+        grid1.add(hBox2, 0, 1);
+        grid1.add(hBox3, 0, 3);
+        //grid1.add(hBox4, 0, 4);
+        grid1.add(vBox1, 0, 2);
+        grid1.add(vBox2, 1, 0,1,5);
+        //grid1.add(sepHor1,0,1);
+        //GridPane grid2 = new GridPane();
+        //Label userName = new Label("FROM valuta:");
+        primaryStage.setScene(new Scene(grid1, 900, 700));
         //todo add stuff to scene ofzo  https://community.oracle.com/thread/2587213?start=0&tstart=0
         primaryStage.getScene().fillProperty();
         primaryStage.alwaysOnTopProperty();
         primaryStage.show();
     }
-///------
+
 
     public static void main(String[] args) {
         launch(args);
