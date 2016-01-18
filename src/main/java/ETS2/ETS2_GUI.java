@@ -96,9 +96,10 @@ public class ETS2_GUI extends Application {
         final TextField inputField2 = new TextField("displayed");//innerHTML was mooi.  getProperties niet goed.
         urlInputField.setAlignment(Pos.TOP_LEFT);
         scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        scenetitle2.setText("scenetitle2");
         scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
-
+        scenetitle2.setText(""+scenetitle2.getWrappingWidth());
+        scenetitle2.setWrappingWidth(500);
+        //scenetitle2.scroll in grid ipv text?
 //--------------------------------
         hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
         hBox2.getChildren().addAll(inputField1,inputField2);
@@ -249,28 +250,8 @@ public class ETS2_GUI extends Application {
         button09Report.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    //------
-/*
-                    ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
-                    //ReportState reportstate1 = new ReportState(seleniumInstance1,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-                    //ReportState reportstate1 = new ReportState(browser,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-                    ReportState reportstate1 = new ReportState(seleniumInstance1,"label123",new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-                    //reportstate.setProperty("class",geb.report.Base64);
-                    //reportstate.setProperty();
-                    screenshotReporter1.writeReport(reportstate1);
-                    PageSourceReporter pageSourceReporter1 = new PageSourceReporter();
-                    pageSourceReporter1.writeReport(reportstate1);*/
-                    ///-----
-
                     System.out.println("button09Report clicked");
-                    //seleniumInstance1.mouseOver(inputField1.getText());
-                    //BrowserDaoETS2 browser1 = new BrowserDaoETS2("http://www.break.com");
-                    //BrowserDaoETS2.make
-                    //browserInstance1.makeReport();
-                    //seleniumInstance1.makeReport();
                     scenetitle1.setText(groovybrowser.makeReport(checkbox1.isSelected(),checkbox2.isSelected()));
-
-
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -297,7 +278,7 @@ public class ETS2_GUI extends Application {
         grid1.add(scenetitle1,0,4);
         //grid1.add(hBox4, 0, 4);
         grid1.add(vBox1, 0, 2);
-        grid1.add(vBox2, 1, 0,1,5);
+        grid1.add(vBox2, 1, 0,1,30);
         //grid1.add(sepHor1,0,1);
         //GridPane grid2 = new GridPane();
         //Label userName = new Label("FROM valuta:");
