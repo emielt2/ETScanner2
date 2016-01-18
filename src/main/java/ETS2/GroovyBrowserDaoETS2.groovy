@@ -74,11 +74,12 @@ public class GroovyBrowserDaoETS2 {
         //chromeoptions.addArguments("start-maximized");
         //chromeoptions.addArguments("user-data-dir=/path/to/your/custom/profile");
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
-        browser2 = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: 'http://nu.nl')//(new ChromeDriver());
+        browser2 = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: inputUrl)//(new ChromeDriver());
         //driver = new ChromeDriver(chromeoptions);
 //        driver = new Browser();
         //Browser browserx = new ChromeDriver();
-        browser2.go("http://gebish.org")
+        //browser2.go(inputUrl)
+        browser2.go()
         //driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
         //Browser browser2 = new Browser(driver:)
 
@@ -226,6 +227,22 @@ public class GroovyBrowserDaoETS2 {
 
         }
         return returnvalue
+    }
+
+    String doGebSpockAction(String bystring, String stringstring, String actionstring) {
+        String returnvalue = "returnvalue not changed, something went wrong"
+        browser2.drive{
+            if(actionstring=="click()"){
+               // browser2.getDriver().findElement(By.id(stringstring)).click();
+                browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+                returnvalue="findElement(By.cssSelector("+stringstring+")).click();"
+
+                //todo medewerkers-it heeft oa  static content { overlayAanmakenNieuweZaak { $("div", id: contains("ZKN004_1"))} }
+            }
+
+        }
+        return returnvalue
+
     }
 
     public String getSelectorX(String stringcss) {
@@ -399,6 +416,7 @@ public class GroovyBrowserDaoETS2 {
 
     return dateText;
     }
+
 
 
 }

@@ -70,9 +70,10 @@ public class ETS2_GUI extends Application {
 
         //HBox hBox4 = new HBox(40);
         VBox vBox1 = new VBox(40);//voor knoppen Driver
-        vBox1.setSpacing(3);
+        vBox1.setSpacing(5);
         VBox vBox2 = new VBox(40);//voor scenetitle2
         VBox vBox3 = new VBox(40);//voor knoppen GebSpock
+        vBox3.setSpacing(5);
 //-------------------------------
         /*alles is standaard topleft //hBox1.setAlignment(Pos.TOP_LEFT);
         hBox2.setAlignment(Pos.TOP_LEFT);
@@ -102,12 +103,13 @@ public class ETS2_GUI extends Application {
         final Text scenetitle2 = new Text("Last results:");
         final Text textConnection = new Text("Connection:");
         final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
-        final TextField urlInputField = new TextField("http://www.ad.nl/");
+        final TextField urlInputField = new TextField("http://gebish.org/");
         final TextField inputField1 = new TextField("crossbrowser");
         final TextField inputField2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
         final TextField inputField3 = new TextField("id");
-        final TextField inputField4 = new TextField("#crossbrowser");
+        final TextField inputField4 = new TextField("li.crossbrowser");
         final TextField inputField5 = new TextField("click()");
+        final TextField outputField1CopyItem = new TextField("click()");
 
         urlInputField.setAlignment(Pos.TOP_LEFT);
         scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -122,7 +124,7 @@ public class ETS2_GUI extends Application {
         hBox3.getChildren().addAll(inputField3,inputField4,inputField5);
         hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
         vBox2.getChildren().add(scenetitle2);
-        vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem);
+        vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem,outputField1CopyItem);
         vBox2.setStyle("-fx-border-color: black;");
         vBox2.setMaxWidth(500);
         vBox2.setMinWidth(500);
@@ -284,6 +286,29 @@ public class ETS2_GUI extends Application {
             }
         });
 
+        button11SpockGet.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
+                    scenetitle1.setText("a");
+                } catch (Exception e1) {
+
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        button13MakeCopyableItem.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
+                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText()));
+                } catch (Exception e1) {
+
+                    e1.printStackTrace();
+                }
+            }
+        });
 /**
  * Setting content of grids
  *
@@ -297,6 +322,7 @@ public class ETS2_GUI extends Application {
         grid1.add(vBox1, 0, grid1leftcounter++);
         grid1.add(sepHor2,0,grid1leftcounter++);
         grid1.add(hBox3,0,grid1leftcounter++);
+        grid1.add(vBox3,0,grid1leftcounter++);
         grid1.add(sepHor3,0,grid1leftcounter++);
         grid1.add(hBox4, 0, grid1leftcounter++);
         grid1.add(scenetitle1,0,grid1leftcounter++);
