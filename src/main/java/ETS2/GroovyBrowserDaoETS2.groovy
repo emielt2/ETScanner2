@@ -313,7 +313,12 @@ public class GroovyBrowserDaoETS2 {
             //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
             // driver.findElement(By.cssSelector(cssstring1)).click();
             //driver.findElement(new By.ByPartialLinkText("TEXTS")).click();
-            driver.findElement(new By.ByPartialLinkText(cssstring1)).click();
+            //driver.findElement(new By.ByPartialLinkText(cssstring1)).click();//DIT WAS ORIGINAL
+
+            browser2.drive{
+                browser2.$(cssstring1).click();
+            }
+
 //todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
             //driver.findElement(By.linkText("Texts")).click();
             // driver.findElement(new By.ByLinkText("Texts")).click();
@@ -324,7 +329,7 @@ public class GroovyBrowserDaoETS2 {
         }
     }
 
-    public void makeReport(){
+    public String makeReport(boolean pngCheck,boolean HTMLCheck){
         System.out.println("makeReport() called");
 /*
         Browser b = new Browser();
@@ -335,27 +340,30 @@ public class GroovyBrowserDaoETS2 {
 
 
 //TODO
+        /*
         ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
         //ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
         ReportState reportstate1 = new ReportState(browser2,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
         //browser1 komt van bovenaan DAOets
         screenshotReporter1.writeReport(reportstate1);
-        /*
-          ScreenshotReporter sr = new ScreenshotReporter();
-          //browser1.go("http://www.nrc.nl");
-          sr.writeReport(new ReportState(browser1,"label123",new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2")));
+  */
+        //ScreenshotReporter sr = new ScreenshotReporter();
+        ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
+        PageSourceReporter pageSourceReporter1 = new PageSourceReporter();
+        String dateText = new FunctionsDaoETS2().getDateString()
+        ReportState reportstate1 = new ReportState(browser2,"label"+dateText,new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
+        //sr.writeReport(new ReportState(browser1,"label123",new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2")));
+        if(pngCheck)screenshotReporter1.writeReport(reportstate1);
+        if(HTMLCheck)pageSourceReporter1.writeReport(reportstate1);
+        //ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
 
-
-          ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
-          //ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS1().getDateString(),new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
-          ReportState reportstate1 = new ReportState(browser1,"label"+new FunctionsDaoETS2().getDateString(),new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
           //ReportState reportstate1 = new ReportState(browser1,"label123",new File("F:\\Users\\E\\ETScanner1\\reports\\ETS1"));
           //reportstate.setProperty("class",geb.report.Base64);
           //reportstate.setProperty();
-          screenshotReporter1.writeReport(reportstate1);
-          PageSourceReporter pageSourceReporter1 = new PageSourceReporter();
-          pageSourceReporter1.writeReport(reportstate1);
-  */
+
+
+
+    return dateText;
     }
 
 

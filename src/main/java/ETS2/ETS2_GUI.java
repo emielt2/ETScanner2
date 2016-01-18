@@ -87,7 +87,7 @@ public class ETS2_GUI extends Application {
         sepVer.setOrientation(Orientation.VERTICAL);//Vertical separator
 //--------------------------------
         final Text statusText = new Text();
-        Text scenetitle = new Text("Welcome Citizen47281");
+        final Text scenetitle1 = new Text("Welcome Citizen47281");
         final Text scenetitle2 = new Text("Last results:");
         final TextField urlInputField = new TextField("http://www.ad.nl/");
         //final TextField inputField1 = new TextField("header");
@@ -95,9 +95,10 @@ public class ETS2_GUI extends Application {
 
         final TextField inputField2 = new TextField("displayed");//innerHTML was mooi.  getProperties niet goed.
         urlInputField.setAlignment(Pos.TOP_LEFT);
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle2.setText("scenetitle2");
         scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
+
 //--------------------------------
         hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
         hBox2.getChildren().addAll(inputField1,inputField2);
@@ -220,9 +221,9 @@ public class ETS2_GUI extends Application {
                                            public void handle(ActionEvent e) {
                                                try {
                                                    System.out.println("button05InfoAttribute clicked");
-                                                   String temp = groovybrowser.getThis(inputField1.getText(),"getProperties()");
-                                                   System.out.println("temp = " + temp);
-                                                   scenetitle2.setText(temp);
+                                                   //String temp = groovybrowser.getThis(inputField1.getText(),"getProperties()");
+                                                   //System.out.println("temp = " + temp);
+                                                   scenetitle2.setText(groovybrowser.getThis(inputField1.getText(),"getProperties()"));
                                                } catch (Exception e1) {
                                                    e1.printStackTrace();
                                                }
@@ -235,6 +236,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button06MouseClick clicked");
+                    groovybrowser.mouseClick(inputField1.getText());
                     //seleniumInstance1.mouseClick(inputField1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -266,7 +268,7 @@ public class ETS2_GUI extends Application {
                     //BrowserDaoETS2.make
                     //browserInstance1.makeReport();
                     //seleniumInstance1.makeReport();
-                    groovybrowser.makeReport();
+                    scenetitle1.setText(groovybrowser.makeReport(checkbox1.isSelected(),checkbox2.isSelected()));
 
 
                 } catch (Exception e1) {
@@ -292,6 +294,7 @@ public class ETS2_GUI extends Application {
         grid1.add(hBox1, 0, 0);
         grid1.add(hBox2, 0, 1);
         grid1.add(hBox3, 0, 3);
+        grid1.add(scenetitle1,0,4);
         //grid1.add(hBox4, 0, 4);
         grid1.add(vBox1, 0, 2);
         grid1.add(vBox2, 1, 0,1,5);
