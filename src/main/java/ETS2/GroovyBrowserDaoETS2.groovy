@@ -224,19 +224,26 @@ public class GroovyBrowserDaoETS2 {
             catch (Exception e){
                 return e.message.toString();
             }
-
         }
         return returnvalue
     }
 
     String doGebSpockAction(String bystring, String stringstring, String actionstring) {
-        String returnvalue = "returnvalue not changed, something went wrong"
+
+        String returnvalue = "returnvalue not changed something went wrong"
+
         browser2.drive{
             if(actionstring=="click()"){
                // browser2.getDriver().findElement(By.id(stringstring)).click();
-                browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
-                returnvalue="findElement(By.cssSelector("+stringstring+")).click();"
+                //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+                //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
+                returnvalue= new String("Label1:{browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();}")
+//                returnvalue="println \"Hello22222\"";
 
+                Binding binding = new Binding();
+                GroovyShell shell = new GroovyShell(binding);
+                //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
+                Object value = shell.evaluate(returnvalue);
                 //todo medewerkers-it heeft oa  static content { overlayAanmakenNieuweZaak { $("div", id: contains("ZKN004_1"))} }
             }
 
@@ -418,7 +425,30 @@ public class GroovyBrowserDaoETS2 {
     }
 
 
+    String SandBox(String string1) {
+        //String returnvalue = "println \"Hello22222\"";
+        String returnvalue = "startvalue returnvalue";
 
+        //String
+
+        // browser2.getDriver().findElement(By.id(stringstring)).click();
+        //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+        //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
+        //GOODTRYNOTWORKING returnvalue= new String("Label1:{browser2.getDriver().findElement(By.cssSelector("+string1+")).click();}")
+
+//                returnvalue="println \"Hello22222\"";
+
+        Binding binding = new Binding();
+        GroovyShell shell = new GroovyShell();
+        shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
+        shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
+
+        //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
+        //Object value = shell.evaluate(returnvalue);
+
+
+        return returnvalue
+    }
 }
 /*
 class ResultObj{

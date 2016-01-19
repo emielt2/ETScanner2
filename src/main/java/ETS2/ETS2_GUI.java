@@ -1,5 +1,7 @@
 package ETS2;
 //import geb.Browser;
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -279,6 +281,7 @@ public class ETS2_GUI extends Application {
         button10ClickSandbox.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
+                    System.out.println(groovybrowser.SandBox(inputField1.getText()));
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -289,8 +292,8 @@ public class ETS2_GUI extends Application {
         button11SpockGet.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
-                    scenetitle1.setText("a");
+                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText()));
+
                 } catch (Exception e1) {
 
                     e1.printStackTrace();
@@ -301,8 +304,11 @@ public class ETS2_GUI extends Application {
         button13MakeCopyableItem.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
+                    //groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
                     outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText()));
+                    /*Binding binding = new Binding();
+                    GroovyShell shell = new GroovyShell(binding);
+                    Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x");*/
                 } catch (Exception e1) {
 
                     e1.printStackTrace();
@@ -325,7 +331,9 @@ public class ETS2_GUI extends Application {
         grid1.add(vBox3,0,grid1leftcounter++);
         grid1.add(sepHor3,0,grid1leftcounter++);
         grid1.add(hBox4, 0, grid1leftcounter++);
+        grid1.add(button10ClickSandbox,0,grid1leftcounter++);
         grid1.add(scenetitle1,0,grid1leftcounter++);
+
         //grid1.add(hBox4, 0, grid1leftcounter++);
 
         grid1.add(vBox2, 1, 0,1,30);
