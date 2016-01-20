@@ -58,6 +58,7 @@ public class ETS2_GUI extends Application {
         Button button11SpockGet = new Button("SpockGet");
         Button button12GebGet = new Button("GebGet");
         Button button13MakeCopyableItem = new Button("Make item");
+        Button button14GroovyShellRun = new Button("Make item");
 //-------------------------------
         final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
         checkbox1.setSelected(true);
@@ -65,12 +66,16 @@ public class ETS2_GUI extends Application {
         checkbox2.setSelected(true);
 //-------------------------------
         HBox hBox1 = new HBox(40);//for Connectionactions
-        hBox1.setSpacing(3);
+
         HBox hBox2 = new HBox(40);//voor input1
         HBox hBox3 = new HBox(40);//voor gebspock
         HBox hBox4 = new HBox(40);//voor reports
+        VBox vBox5 = new VBox(40);//voor groovyshell
+        HBox hBox6 = new HBox(40);//voor reports
 
         //HBox hBox4 = new HBox(40);
+        hBox1.setSpacing(3);
+        vBox5.setSpacing(3);
         VBox vBox1 = new VBox(40);//voor knoppen Driver
         vBox1.setSpacing(5);
         VBox vBox2 = new VBox(40);//voor scenetitle2
@@ -90,15 +95,21 @@ public class ETS2_GUI extends Application {
         Separator sepHor1 = new Separator();
         Separator sepHor2 = new Separator();
         Separator sepHor3 = new Separator();
+        Separator sepHor4 = new Separator();
+        Separator sepHor5 = new Separator();
         Separator sepVer = new Separator();//Vertical separator
         sepHor1.setMinWidth(360);
         sepHor2.setMinWidth(360);
         sepHor3.setMinWidth(360);
+        sepHor4.setMinWidth(360);
+        sepHor5.setMinWidth(360);
         sepVer.setOrientation(Orientation.VERTICAL);//Vertical separator
         BackgroundFill bgf1 = new BackgroundFill(Paint.valueOf("123"), CornerRadii.EMPTY, Insets.EMPTY);
         sepHor1.setBackground(new Background(bgf1));
         sepHor2.setBackground(new Background(bgf1));
         sepHor3.setBackground(new Background(bgf1));
+        sepHor4.setBackground(new Background(bgf1));
+        sepHor5.setBackground(new Background(bgf1));
 //--------------------------------
         final Text statusText = new Text();
         final Text scenetitle1 = new Text("Welcome Citizen47281");
@@ -106,25 +117,29 @@ public class ETS2_GUI extends Application {
         final Text textConnection = new Text("Connection:");
         final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
         final TextField urlInputField = new TextField("http://gebish.org/");
-        final TextField inputField1 = new TextField("crossbrowser");
-        final TextField inputField2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
-        final TextField inputField3 = new TextField("id");
-        final TextField inputField4 = new TextField("li.crossbrowser");
-        final TextField inputField5 = new TextField("click()");
-        final TextField outputField1CopyItem = new TextField("click()");
+        final TextField inputField01css1 = new TextField("crossbrowser");
+        final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
+        final TextField inputField03gebId = new TextField("id");
+        final TextField inputField04gebString = new TextField("li.crossbrowser");
+        final TextField inputField05gebAction = new TextField("click()");
+        final TextField inputField06GroovyFile = new TextField("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanPageTester.groovy");
+        final TextField outputField1CopyItem = new TextField("click button to get new result");
 
         urlInputField.setAlignment(Pos.TOP_LEFT);
         scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
         scenetitle2.setText(""+scenetitle2.getWrappingWidth());
         scenetitle2.setWrappingWidth(500);
+        inputField06GroovyFile.setMinWidth(400);
         //scenetitle2.scroll in grid ipv text?
 //--------------------------------
         hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
-        hBox2.getChildren().addAll(inputField1,inputField2);
+        hBox2.getChildren().addAll(inputField01css1,inputField02css2);
         vBox1.getChildren().addAll(button03Information,button04MouseOver,button05InfoAttribute,button06MouseClick,button07InfoGebSpockForms,button08SaveToSql);
-        hBox3.getChildren().addAll(inputField3,inputField4,inputField5);
+        hBox3.getChildren().addAll(inputField03gebId,inputField04gebString,inputField05gebAction);
         hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
+        vBox5.getChildren().addAll(inputField06GroovyFile,button14GroovyShellRun);
+        //hBox6.getChildren().addAll();
         vBox2.getChildren().add(scenetitle2);
         vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem,outputField1CopyItem);
         vBox2.setStyle("-fx-border-color: black;");
@@ -158,7 +173,7 @@ public class ETS2_GUI extends Application {
          */
 
 
-        inputField1.setOnAction(new EventHandler<ActionEvent>() {
+        inputField01css1.setOnAction(new EventHandler<ActionEvent>() {
                                     public void handle(ActionEvent e) {
                                         try {
                                             System.out.println("Go clicked");
@@ -170,7 +185,7 @@ public class ETS2_GUI extends Application {
                                 }
         );
 
-        inputField2.setOnAction(new EventHandler<ActionEvent>() {
+        inputField02css2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("Go clicked");
@@ -220,9 +235,9 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button03Information clicked");
-                    //System.out.println(groovybrowser.getSelectorText(inputField1.getText()));
-                    //System.out.println(groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText()));
-                    scenetitle2.setText((groovybrowser.getSelectorText(inputField1.getText(),inputField2.getText())));
+                    //System.out.println(groovybrowser.getSelectorText(inputField01css1.getText()));
+                    //System.out.println(groovybrowser.getSelectorText(inputField01css1.getText(),inputField02css2.getText()));
+                    scenetitle2.setText((groovybrowser.getSelectorText(inputField01css1.getText(),inputField02css2.getText())));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -233,7 +248,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button04MouseOver clicked");
-                    //seleniumInstance1.mouseOver(inputField1.getText());
+                    //seleniumInstance1.mouseOver(inputField01css1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -244,9 +259,9 @@ public class ETS2_GUI extends Application {
                                            public void handle(ActionEvent e) {
                                                try {
                                                    System.out.println("button05InfoAttribute clicked");
-                                                   //String temp = groovybrowser.getThis(inputField1.getText(),"getProperties()");
+                                                   //String temp = groovybrowser.getThis(inputField01css1.getText(),"getProperties()");
                                                    //System.out.println("temp = " + temp);
-                                                   scenetitle2.setText(groovybrowser.getThis(inputField1.getText(),"getProperties()"));
+                                                   scenetitle2.setText(groovybrowser.getThis(inputField01css1.getText(),"getProperties()"));
                                                } catch (Exception e1) {
                                                    e1.printStackTrace();
                                                }
@@ -259,8 +274,8 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button06MouseClick clicked");
-                    groovybrowser.mouseClick(inputField1.getText());
-                    //seleniumInstance1.mouseClick(inputField1.getText());
+                    groovybrowser.mouseClick(inputField01css1.getText());
+                    //seleniumInstance1.mouseClick(inputField01css1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -283,7 +298,7 @@ public class ETS2_GUI extends Application {
         button10ClickSandbox.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    System.out.println(groovybrowser.SandBox(inputField1.getText()));
+                    //System.out.println(groovybrowser.SandBox(inputField01css1.getText()));
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -294,7 +309,7 @@ public class ETS2_GUI extends Application {
         button11SpockGet.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText()));
+                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField03gebId.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));
 
                 } catch (Exception e1) {
 
@@ -303,20 +318,18 @@ public class ETS2_GUI extends Application {
             }
         });
 
-        button13MakeCopyableItem.setOnAction(new EventHandler<ActionEvent>() {
+        button14GroovyShellRun.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    //groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText());
-                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField3.getText(),inputField4.getText(),inputField5.getText()));
-                    /*Binding binding = new Binding();
-                    GroovyShell shell = new GroovyShell(binding);
-                    Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x");*/
-                } catch (Exception e1) {
+                    System.out.println(groovybrowser.SandBox(inputField01css1.getText()));
 
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
         });
+
+
 /**
  * Setting content of grids
  *
@@ -333,6 +346,9 @@ public class ETS2_GUI extends Application {
         grid1.add(vBox3,0,grid1leftcounter++);
         grid1.add(sepHor3,0,grid1leftcounter++);
         grid1.add(hBox4, 0, grid1leftcounter++);
+        grid1.add(sepHor4,0,grid1leftcounter++);
+        grid1.add(vBox5, 0, grid1leftcounter++);
+        grid1.add(sepHor5,0,grid1leftcounter++);
         grid1.add(button10ClickSandbox,0,grid1leftcounter++);
         grid1.add(scenetitle1,0,grid1leftcounter++);
 

@@ -20,7 +20,7 @@ import geb.spock.GebReportingSpec
 import org.openqa.selenium.By
 
 //import pageobjects.afspraak.AfspraakOverlaysPage
-//import ETS2.ScanPage;
+//import ETS2.GettyPage;
 
 import spock.lang.Stepwise
 
@@ -39,15 +39,15 @@ class eSuite_MP_AFS_04_Maak_afspraak_Spec extends GebReportingSpec {
     def "Ga naar inlogpagina van het mp"() {
 
         when: "Ga naar de inlogpagina van het mp"
-        to ScanPage
+        to GettyPage
         go("http://gebish.org")
         sleep(2000)
 
         then: "inlogpagina van het mp is geopend"
         //go("http://www.wikipedia.org")
 
-        at ScanPage
-        //waitFor { at ScanPage }
+        at GettyPage
+        //waitFor { at GettyPage }
     }
 
 /*

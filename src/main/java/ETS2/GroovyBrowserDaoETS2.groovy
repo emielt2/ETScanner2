@@ -171,6 +171,8 @@ public class GroovyBrowserDaoETS2 {
                     //returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute(stringcss2);
                     println "HIER1"
                     returnvalue = browser2.getDriver().findElement(new By.ByCssSelector(stringcss1)).getAttribute(stringcss2);
+                    print browser2.getDriver().findElement(new By.ByCssSelector(stringcss1)).getAttribute(stringcss2);
+                    //print returnvalue
                     //returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute("innerHTML");
                     /**NICE FINDELEMENT innerHTML returnvalue = browser2.getDriver().findElement(By.className(stringcss1)).getAttribute("innerHTML");*/
 

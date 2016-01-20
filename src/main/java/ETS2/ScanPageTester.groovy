@@ -1,7 +1,5 @@
 package ETS2
 
-import geb.Browser
-import geb.report.PageSourceReporter
 import geb.report.ReportState
 import geb.report.ScreenshotReporter
 import geb.spock.GebReportingSpec
@@ -23,10 +21,11 @@ import geb.spock.GebReportingSpec
  */
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import spock.lang.Stepwise
 
 //import pageobjects.afspraak.AfspraakOverlaysPage
-//import ETS2.ScanPage;
+//import ETS2.GettyPage;
 @Stepwise
 class ScanPageTester extends GebReportingSpec {
    
@@ -42,22 +41,22 @@ class ScanPageTester extends GebReportingSpec {
     def "Ga naar inlogpagina van het mp"() {
 
         when: "Ga naar de inlogpagina van het mp"
-        to ScanPage
+        //to GettyPage
         //go("http://www.wikipedia.org")
         //sleep(2000)
         //browser.go("http://www.samsung.com")
         //sleep(200)
         then: "inlogpagina van het mp is geopend"
         sleep(50)
-//        waitFor { at ScanPage }
+//        waitFor { at GettyPage }
     }
-    def "make three screenshots"(){
+    def "make one screenshot"(){
         when:
         sleep(50)
-        //to ScanPage
+        //to GettyPage
 
         then:
-        for(int i=0;i<3;i++){
+        for(int i=0;i<1;i++){
             ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
             String dateText = new FunctionsDaoETS2().getDateString()
             ReportState reportstate1 = new ReportState(browser,"label"+dateText,new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
@@ -68,25 +67,52 @@ class ScanPageTester extends GebReportingSpec {
 
     }
     def "Click on something"(){
+        when:
+        to GettyPage
+
+        sleep(200)
+        creativebutton.click()
+        //page.homelogo2.click();
+
+        then:
+        sleep(200)
+        homelogo.click();
+        at GettyPage
+
+
+        //when:
+
         /*when:  println "click when"
         then:  println "click then"*/
     }
     def setupSpec() {
-        //browser = new ChromeDriver()
-       // resetBrowser()
+        ChromeOptions chromeoptions = new ChromeOptions();
+        chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
+        driver = new ChromeDriver(chromeoptions)
+        driver.get("http://www.nu.nl")
     }
     def cleanup() {
-        println "cleanup"
-       // browser.close()
     }
     def cleanupSpec() {
-        println "cleanup"
-        //resetBrowser()
-        browser.go("about:blank")
-        //browser.close()
-        //sleep(1000)
-        //browser.quit()
+driver.close()
+        //resetBrowser()?
     }
+
+    /*void resetBrowser() {
+
+        def driver = browser.driver
+        super.resetBrowser()
+        println "this is resetbrowser"
+       // println System.getProperty("geb.env")
+       // println System.getProperties()
+        if (System.getProperty('geb.env')?.contains('sauce')) {
+            driver.quit()
+        }
+        //driver.quit()//verzet
+        driver.close()//verzet
+
+    }
+*/
     /*def after() {
         println "closing"
         browser.close()
