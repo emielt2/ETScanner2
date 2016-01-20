@@ -40,12 +40,16 @@ class eSuite_MP_AFS_04_Maak_afspraak_Spec extends GebReportingSpec {
 
         when: "Ga naar de inlogpagina van het mp"
         to ScanPage
+        go("http://gebish.org")
+        sleep(2000)
 
         then: "inlogpagina van het mp is geopend"
-        go("http://www.wikipedia.org")
-        sleep(2000)
-        waitFor { at ScanPage }
+        //go("http://www.wikipedia.org")
+
+        at ScanPage
+        //waitFor { at ScanPage }
     }
+
 /*
     def "Log in op het mp"() {
         when: "Inloggen met testuser"

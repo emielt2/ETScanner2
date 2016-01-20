@@ -140,6 +140,7 @@ public class ETS2_GUI extends Application {
 //--------------------------------
         //final SeleniumDaoETS2 seleniumInstance1 = new SeleniumDaoETS2(urlInputField.getText());
         //final BrowserDaoETS2 browserInstance1 = new BrowserDaoETS2(urlInputField.getText());
+        //final GroovyBrowserDaoETS2 groovybrowser = new GroovyBrowserDaoETS2(urlInputField.getText());
         final GroovyBrowserDaoETS2 groovybrowser = new GroovyBrowserDaoETS2(urlInputField.getText());
 //--------------------------------
 
@@ -207,6 +208,7 @@ public class ETS2_GUI extends Application {
                     //BrowserDaoETS2.stopSeleniumConnection();
                     //browserInstance1.stopSeleniumConnection();
                     groovybrowser.stopSeleniumConnection();
+
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

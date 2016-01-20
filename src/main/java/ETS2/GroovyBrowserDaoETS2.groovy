@@ -438,10 +438,15 @@ public class GroovyBrowserDaoETS2 {
 
 //                returnvalue="println \"Hello22222\"";
 
-        Binding binding = new Binding();
+        //Binding binding = new Binding();
         GroovyShell shell = new GroovyShell();
-        shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
-        shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
+        //shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
+        //shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
+        shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanPageTester.groovy"));
+shell.addShutdownHook {}
+        shell.resetLoadedClasses()
+        shell = null;
+        print "reset"
 
         //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
         //Object value = shell.evaluate(returnvalue);
