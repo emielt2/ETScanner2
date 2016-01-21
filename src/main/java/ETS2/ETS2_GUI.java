@@ -1,6 +1,8 @@
 package ETS2;
 //import geb.Browser;
 import groovy.lang.Binding;
+import groovy.lang.GroovyClassLoader;
+import groovy.lang.GroovyObject;
 import groovy.lang.GroovyShell;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.Arrays;
 //---
 //import ETS2.ScanTest1;
@@ -58,7 +61,7 @@ public class ETS2_GUI extends Application {
         Button button11SpockGet = new Button("SpockGet");
         Button button12GebGet = new Button("GebGet");
         Button button13MakeCopyableItem = new Button("Make item");
-        Button button14GroovyShellRun = new Button("Make item");
+        final Button button14GroovyShellRun = new Button("Run script");
 //-------------------------------
         final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
         checkbox1.setSelected(true);
@@ -163,7 +166,7 @@ public class ETS2_GUI extends Application {
         * Start Auto browser
         */
                 try {
-                    groovybrowser.startSeleniumConnection(urlInputField.getText());
+                   // groovybrowser.startSeleniumConnection(urlInputField.getText());
            // seleniumInstance1.startSeleniumConnection();
         } catch (Exception e) {
             e.printStackTrace();
@@ -298,7 +301,17 @@ public class ETS2_GUI extends Application {
         button10ClickSandbox.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    //System.out.println(groovybrowser.SandBox(inputField01css1.getText()));
+                    GroovyClassLoader loader = new GroovyClassLoader();
+                    Class groovyClass = loader.parseClass(new File(inputField06GroovyFile.getText()));
+
+                    GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
+                    //Object res = groovyObject.invokeMethod("customConcat", new Object[]{"foo", "boo"});
+                  //  Object res1 = groovyObject.invokeMethod("startbrowser", new Object[]{"foo", "boo"});
+                    //Object res2 = groovyObject.invokeMethod("Click on something", new Object[]{"foo", "boo"});
+                    Object res3 = groovyObject.invokeMethod("setupSpec", null);
+
+
+                   // System.out.println(groovybrowser.SandBox(inputField06GroovyFile.getText()));
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -321,8 +334,8 @@ public class ETS2_GUI extends Application {
         button14GroovyShellRun.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    System.out.println(groovybrowser.SandBox(inputField01css1.getText()));
-
+//                    System.out.println(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
+                    scenetitle2.setText(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

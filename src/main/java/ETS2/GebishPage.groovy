@@ -4,13 +4,13 @@ import geb.Page
 
 
 //println "This is GettyPage.groovy starttext outside a method"
-class GettyPage extends Page {
+class GebishPage extends Page {
 
-    static url = "http://gettyimages.nl";
-    //static url = "http://gebish.org";
+    static url = "http://gebish.org";
+
 
     static at = {
-        title == "Stockfotografie, royalty free foto's en de meest recente nieuwsfoto's | Getty Images"
+        title == "Geb - Very Groovy Browser Automation"
         //title == "Getty Images"
     }
 

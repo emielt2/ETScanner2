@@ -4,6 +4,8 @@ import geb.Browser
 import geb.report.ReportState
 import geb.report.ScreenshotReporter
 import geb.spock.GebReportingSpec
+import org.openqa.selenium.By
+import org.openqa.selenium.chrome.ChromeDriver
 
 /*
  * Copyright 2011 the original author or authors.
@@ -20,15 +22,13 @@ import geb.spock.GebReportingSpec
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.openqa.selenium.By
-import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import spock.lang.Stepwise
 
 //import pageobjects.afspraak.AfspraakOverlaysPage
 //import ETS2.GettyPage;
 @Stepwise
-class ScanPageTester extends GebReportingSpec {
+class ScanStepsTesterB extends GebReportingSpec {
    
     private boolean isElementPresent(By by) {
         try {
@@ -39,36 +39,8 @@ class ScanPageTester extends GebReportingSpec {
         }
     }
 
-    def "Ga naar inlogpagina van het mp"() {
-
-        when: "Ga naar de inlogpagina van het mp"
-        //to GettyPage
-        //go("http://www.wikipedia.org")
-        //sleep(2000)
-        //browser.go("http://www.samsung.com")
-        //sleep(200)
-        then: "inlogpagina van het mp is geopend"
-        sleep(50)
-//        waitFor { at GettyPage }
-    }
-    def "make one screenshot"(){
-        when:
-        sleep(50)
-        //to GettyPage
-
-        then:
-        for(int i=0;i<1;i++){
-            ScreenshotReporter screenshotReporter1 = new ScreenshotReporter();
-            String dateText = new FunctionsDaoETS2().getDateString()
-            ReportState reportstate1 = new ReportState(browser,"label"+dateText,new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
-            println(dateText + ".png created")
-            screenshotReporter1.writeReport(reportstate1);
-            sleep(200)
-        }
-
-    }
     //def "Click on something"(){
-    def "Click on something"(){
+    def "Step 03 Click on something"(){
         when:
         to GettyPage
 
@@ -88,6 +60,15 @@ class ScanPageTester extends GebReportingSpec {
         then:  println "click then"*/
     }
 
+    def "Step 04 Go to Gebish"(){
+        when:
+        sleep(1000)
+        to GebishPage
+        sleep(1000)
+        then:
+        at GebishPage
+    }
+
     public static void geefX(){
         print "XXXX"
     }
@@ -100,10 +81,20 @@ class ScanPageTester extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpec() {
+    def setupSpecxx() {
+/*
+        if (null == ((RemoteWebDriver)driver).sessionId) {
+            println "null ja"
+            // current window is closed, switch to another or quit
+        } else {
+            println "null nee"
+            // current window is open, send commands or close
+        }
+*/
         ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         driver = new ChromeDriver(chromeoptions)
+
         //driver.get("http://www.nu.nl")
     }
     def startbrowser(String a,String b){

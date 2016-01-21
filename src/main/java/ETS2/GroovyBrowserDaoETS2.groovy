@@ -428,34 +428,66 @@ public class GroovyBrowserDaoETS2 {
 
 
     String SandBox(String string1) {
-        //String returnvalue = "println \"Hello22222\"";
         String returnvalue = "startvalue returnvalue";
+        Binding binding = new Binding();
+        GroovyShell shell = new GroovyShell(binding);
+        Script scrpt = shell.parse(new File(string1));
 
-        //String
+        binding.setVariable("str1", "foo");
+        binding.setVariable("str2", "boo");
+        binding.setVariable("tools", scrpt);
 
-        // browser2.getDriver().findElement(By.id(stringstring)).click();
-        //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
-        //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
-        //GOODTRYNOTWORKING returnvalue= new String("Label1:{browser2.getDriver().findElement(By.cssSelector("+string1+")).click();}")
+        //System.out.println(shell.evaluate("tools.customConcat(str1, str2)"));
+        //System.out.println(shell.evaluate("tools.\"Click on something\"()"));
+        System.out.println("File = "+ string1);
+        String str1 = "ABC"
+        String str2 = "DEF"
+        //System.out.println(shell.evaluate("tools.customConcat(str1,str2)"));
+        //System.out.println(shell.evaluate("tools.geefX()"));
+        //System.out.println(shell.evaluate("str1.concat(str2)"));
+        GroovyClassLoader loader = new GroovyClassLoader();
+        Class groovyClass = loader.parseClass(new File(string1));
+
+        GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
+        //Object res = groovyObject.invokeMethod("customConcat", new Object[]{"foo", "boo"});
+        return returnvalue
+    }
+
+
+String RunGroovyShell(String string1) {
+    //String returnvalue = "println \"Hello22222\"";
+    String returnvalue = "startvalue returnvalue";
+
+    //String
+
+    // browser2.getDriver().findElement(By.id(stringstring)).click();
+    //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+    //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
+    //GOODTRYNOTWORKING returnvalue= new String("Label1:{browser2.getDriver().findElement(By.cssSelector("+string1+")).click();}")
 
 //                returnvalue="println \"Hello22222\"";
 
-        //Binding binding = new Binding();
-        GroovyShell shell = new GroovyShell();
-        //shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
-        //shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
-        shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanPageTester.groovy"));
-shell.addShutdownHook {}
-        shell.resetLoadedClasses()
-        shell = null;
-        print "reset"
+    //Binding binding = new Binding();
+    GroovyShell shell = new GroovyShell();
+    //shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
+    //shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
+    shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterA.groovy"));
+    println("ScanStepsTesterA.groovy")
+    sleep(3000)
+    shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterB.groovy"));
+    println("ScanStepsTesterB.groovy")
+    //shell.run(new File(string1));//WORKS!!
 
-        //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
-        //Object value = shell.evaluate(returnvalue);
+    //shell.run(new File(string1),"Click on something()");//dit werkt niet, pakt gewoon string1 zonder rest te checken.??
+    String x = new File(string1).toString();
+    x =
+    returnvalue =x;
+    //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
+    //Object value = shell.evaluate(returnvalue);
 
 
-        return returnvalue
-    }
+    return returnvalue
+}
 }
 /*
 class ResultObj{

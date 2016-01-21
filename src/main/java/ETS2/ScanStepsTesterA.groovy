@@ -4,6 +4,8 @@ import geb.Browser
 import geb.report.ReportState
 import geb.report.ScreenshotReporter
 import geb.spock.GebReportingSpec
+import org.openqa.selenium.By
+import org.openqa.selenium.chrome.ChromeDriver
 
 /*
  * Copyright 2011 the original author or authors.
@@ -20,15 +22,13 @@ import geb.spock.GebReportingSpec
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.openqa.selenium.By
-import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import spock.lang.Stepwise
 
 //import pageobjects.afspraak.AfspraakOverlaysPage
 //import ETS2.GettyPage;
 @Stepwise
-class ScanPageTester extends GebReportingSpec {
+class ScanStepsTesterA extends GebReportingSpec {
    
     private boolean isElementPresent(By by) {
         try {
@@ -39,19 +39,14 @@ class ScanPageTester extends GebReportingSpec {
         }
     }
 
-    def "Ga naar inlogpagina van het mp"() {
+    def "Step 01 Go To Getty"() {
 
-        when: "Ga naar de inlogpagina van het mp"
-        //to GettyPage
-        //go("http://www.wikipedia.org")
-        //sleep(2000)
-        //browser.go("http://www.samsung.com")
-        //sleep(200)
-        then: "inlogpagina van het mp is geopend"
-        sleep(50)
-//        waitFor { at GettyPage }
+        when: "Go To Getty"
+        to GettyPage
+        then: "Getty is opened"
+        waitFor { at GettyPage }
     }
-    def "make one screenshot"(){
+    def "Step 02 Make one screenshot"(){
         when:
         sleep(50)
         //to GettyPage
@@ -67,26 +62,8 @@ class ScanPageTester extends GebReportingSpec {
         }
 
     }
+
     //def "Click on something"(){
-    def "Click on something"(){
-        when:
-        to GettyPage
-
-        sleep(200)
-        cartbutton.click()
-        //page.homelogo2.click();
-
-        then:
-        sleep(200)
-        homelogo.click();
-        at GettyPage
-
-
-        //when:
-
-        /*when:  println "click when"
-        then:  println "click then"*/
-    }
 
     public static void geefX(){
         print "XXXX"
@@ -101,36 +78,29 @@ class ScanPageTester extends GebReportingSpec {
         return string1.concat(string2)
     }
     def setupSpec() {
+/*
+        if (null == ((RemoteWebDriver)driver).sessionId) {
+            println "null ja"
+            // current window is closed, switch to another or quit
+        } else {
+            println "null nee"
+            // current window is open, send commands or close
+        }
+*/      driver.close()
         ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         driver = new ChromeDriver(chromeoptions)
+//todo hoe krijg ik toch user-data-dir en dat BBB het oppakt
         //driver.get("http://www.nu.nl")
     }
-    def startbrowser(String a,String b){
-        //when:
-        ChromeOptions chromeoptions = new ChromeOptions();
-        chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
-        driver = new ChromeDriver(chromeoptions)
-        def browser = new Browser(driver: new ChromeDriver(), baseUrl: 'http://gebish.org')
-       // when:
-        browser.drive{
-            when:
-            println "this is drive"
-            then:
-            sleep(1000)
-        }
-        println "when1"
-     //   then:
-        //then:
-        println "then1"
-    }
+
     def setup() {
 
     }
     def cleanup() {
     }
     def cleanupSpec() {
-driver.close()
+//driver.close()
         //resetBrowser()?
     }
 
