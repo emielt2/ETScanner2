@@ -2,17 +2,18 @@ package ETS2
 
 import geb.Page
 
-class GebishPage extends Page {
+class GooglePage extends Page {
 
-    static url = "http://gebish.org";
+    static url = "http://www.google.nl";
     static at = {
-        title == "Geb - Very Groovy Browser Automation"
+        title == "Google"
+        //title == "Getty Images"
     }
     static content = {
 //        homelogo { $("a", class: "site_logo")}//WORKS for getty!!
     }
     def static printMe(){
-        println "Dit is printMe() van ETS2\\GettyPage"
+        println "This is printMe() of ETS2\\GooglePage"
         return true
     }
 }

@@ -42,16 +42,16 @@ class ScanStepsTesterB extends GebReportingSpec {
     //def "Click on something"(){
     def "Step 03 Click on something"(){
         when:
-        to GettyPage
+        to GebishPage
 
-        sleep(200)
-        cartbutton.click()
+        sleep(100)
+        //cartbutton.click()
         //page.homelogo2.click();
 
         then:
-        sleep(200)
-        homelogo.click();
-        at GettyPage
+        sleep(100)
+        //homelogo.click();
+        at GebishPage
 
 
         //when:
@@ -62,11 +62,11 @@ class ScanStepsTesterB extends GebReportingSpec {
 
     def "Step 04 Go to Gebish"(){
         when:
-        sleep(1000)
-        to GebishPage
-        sleep(1000)
+        sleep(100)
+        to GettyPage
+        sleep(100)
         then:
-        at GebishPage
+        at GettyPage
     }
 
     public static void geefX(){
@@ -81,7 +81,7 @@ class ScanStepsTesterB extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpecxx() {
+    def setupSpecxxx() {
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"

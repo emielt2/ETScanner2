@@ -473,7 +473,16 @@ String RunGroovyShell(String string1) {
     //shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
     shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterA.groovy"));
     println("ScanStepsTesterA.groovy")
-    sleep(3000)
+    println "Sleeping 1/5"
+    sleep(1000)
+    println "Sleeping 2/5"
+    sleep(1000)
+    println "Sleeping 3/5"
+    sleep(1000)
+    println "Sleeping 4/5"
+    sleep(1000)
+    println "Sleeping 5/5"
+    sleep(1000)
     shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterB.groovy"));
     println("ScanStepsTesterB.groovy")
     //shell.run(new File(string1));//WORKS!!

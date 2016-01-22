@@ -39,13 +39,21 @@ class ScanStepsTesterA extends GebReportingSpec {
         }
     }
 
-    def "Step 01 Go To Getty"() {
+    /*def "Step 01 Go To Getty"() {
 
         when: "Go To Getty"
         to GettyPage
         then: "Getty is opened"
         waitFor { at GettyPage }
+    }*/
+    def "Step 01 Go To Google"() {
+
+        when: "Go To Google"
+        to GooglePage
+        then: "Google is opened"
+        waitFor { at GooglePage }
     }
+
     def "Step 02 Make one screenshot"(){
         when:
         sleep(50)
@@ -58,7 +66,7 @@ class ScanStepsTesterA extends GebReportingSpec {
             ReportState reportstate1 = new ReportState(browser,"label"+dateText,new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
             println(dateText + ".png created")
             screenshotReporter1.writeReport(reportstate1);
-            sleep(200)
+            //sleep(200)
         }
 
     }
@@ -77,7 +85,7 @@ class ScanStepsTesterA extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpec() {
+    def setupSpecxxxx() {
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
@@ -86,11 +94,11 @@ class ScanStepsTesterA extends GebReportingSpec {
             println "null nee"
             // current window is open, send commands or close
         }
-*/      driver.close()
+*/      //driver.close()
         ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         driver = new ChromeDriver(chromeoptions)
-//todo hoe krijg ik toch user-data-dir en dat BBB het oppakt
+//todo hoe krijg ik toch user-data-dir en dat ScanStepsTesterB toch het oppakt
         //driver.get("http://www.nu.nl")
     }
 

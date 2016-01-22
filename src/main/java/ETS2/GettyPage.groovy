@@ -2,12 +2,9 @@ package ETS2
 
 import geb.Page
 
-
-//println "This is GettyPage.groovy starttext outside a method"
 class GettyPage extends Page {
 
     static url = "http://gettyimages.nl";
-    //static url = "http://gebish.org";
 
     static at = {
         title == "Stockfotografie, royalty free foto's en de meest recente nieuwsfoto's | Getty Images"
@@ -28,13 +25,8 @@ class GettyPage extends Page {
        // homelogo2 { $("h1", id: contains("logo"))}
 
     }
-    def static printEE(){
-        println "Dit is EE van ETS2\\GettyPage"
+    def static printMe(){
+        println "Dit is printme() van ETS2\\GettyPage"
         return true
     }
 }
-
-/*
-def "Say your pagename"(){
-    println "This is GettyPage.groovy starttext INSIDE method"
-}*/
