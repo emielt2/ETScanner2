@@ -62,6 +62,7 @@ public class ETS2_GUI extends Application {
         Button button12GebGet = new Button("GebGet");
         Button button13MakeCopyableItem = new Button("Make item");
         final Button button14GroovyShellRun = new Button("Run script");
+        final Button button15GroovyShellRunAlt = new Button("Run scriptsX");
 //-------------------------------
         final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
         checkbox1.setSelected(true);
@@ -125,7 +126,7 @@ public class ETS2_GUI extends Application {
         final TextField inputField03gebId = new TextField("id");
         final TextField inputField04gebString = new TextField("li.crossbrowser");
         final TextField inputField05gebAction = new TextField("click()");
-        final TextField inputField06GroovyFile = new TextField("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanPageTester.groovy");
+        final TextField inputField06GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTesterA.groovy");
         final TextField outputField1CopyItem = new TextField("click button to get new result");
 
         urlInputField.setAlignment(Pos.TOP_LEFT);
@@ -141,7 +142,7 @@ public class ETS2_GUI extends Application {
         vBox1.getChildren().addAll(button03Information,button04MouseOver,button05InfoAttribute,button06MouseClick,button07InfoGebSpockForms,button08SaveToSql);
         hBox3.getChildren().addAll(inputField03gebId,inputField04gebString,inputField05gebAction);
         hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
-        vBox5.getChildren().addAll(inputField06GroovyFile,button14GroovyShellRun);
+        vBox5.getChildren().addAll(inputField06GroovyFile,button14GroovyShellRun,button15GroovyShellRunAlt);
         //hBox6.getChildren().addAll();
         vBox2.getChildren().add(scenetitle2);
         vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem,outputField1CopyItem);
@@ -336,6 +337,16 @@ public class ETS2_GUI extends Application {
                 try {
 //                    System.out.println(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
                     scenetitle2.setText(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        button15GroovyShellRunAlt.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                try {
+                    scenetitle2.setText(groovybrowser.RunGroovyShellAlt(inputField06GroovyFile.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

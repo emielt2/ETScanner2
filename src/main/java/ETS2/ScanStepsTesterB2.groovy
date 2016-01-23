@@ -1,11 +1,10 @@
 package ETS2
 
 import geb.Browser
-import geb.report.ReportState
-import geb.report.ScreenshotReporter
 import geb.spock.GebReportingSpec
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 
 /*
  * Copyright 2011 the original author or authors.
@@ -22,13 +21,12 @@ import org.openqa.selenium.chrome.ChromeDriver
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.openqa.selenium.chrome.ChromeOptions
 import spock.lang.Stepwise
 
 //import pageobjects.afspraak.AfspraakOverlaysPage
 //import ETS2.GettyPage;
 @Stepwise
-class ScanStepsTesterB extends GebReportingSpec {
+class ScanStepsTesterB2 extends GebReportingSpec {
    
     private boolean isElementPresent(By by) {
         try {

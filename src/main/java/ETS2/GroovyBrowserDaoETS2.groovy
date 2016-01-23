@@ -24,6 +24,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.NoSuchElementException
 
+
 import javax.lang.model.element.Element;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -471,25 +472,16 @@ String RunGroovyShell(String string1) {
     GroovyShell shell = new GroovyShell();
     //shell.run(new File("F:/Users/E/ETScanner2/src/main/java/ETS2/GroovyScript01.groovy"));
     //shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\eSuite_MP_AFS_04_Maak_afspraak_Spec.groovy"));
+
+/*
     shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterA.groovy"));
     println("ScanStepsTesterA.groovy")
-    println "Sleeping 1/5"
-    sleep(1000)
-    println "Sleeping 2/5"
-    sleep(1000)
-    println "Sleeping 3/5"
-    sleep(1000)
-    println "Sleeping 4/5"
-    sleep(1000)
-    println "Sleeping 5/5"
-    sleep(1000)
     shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterB.groovy"));
     println("ScanStepsTesterB.groovy")
-    //shell.run(new File(string1));//WORKS!!
-
+*/
+    shell.run(new File(string1));//WORKS!!
     //shell.run(new File(string1),"Click on something()");//dit werkt niet, pakt gewoon string1 zonder rest te checken.??
     String x = new File(string1).toString();
-    x =
     returnvalue =x;
     //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
     //Object value = shell.evaluate(returnvalue);
@@ -497,6 +489,67 @@ String RunGroovyShell(String string1) {
 
     return returnvalue
 }
+
+    String RunGroovyShellAlt(String string1) {
+        String returnvalue = "startvalue returnvalue";
+        //Binding binding = new Binding();
+/*        GroovyShell shell = new GroovyShell();
+        shell.run(new File(string1));//WORKS!!
+        String x = new File(string1).toString();
+        returnvalue =x;*/
+        println "textAlt"
+        //executeOnShell(string1, new File("F:/Users/E/medewerkers-it/src"));
+        //executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
+       // executeOnShell(string1, new File("F:/Users/E/ETScanner2/"));
+        executeOnShell(string1, new File("F:/Users/E/ETScanner2/src/ETS2"));
+        String current = new java.io.File( "." ).getCanonicalPath();
+        System.out.println("Current dir1:"+current);
+        println "XX22"
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current dir using System1:" +currentDir);
+        //todo twee keer currentdit
+       // print System.getProperties()
+        //F:\Users\E\ETScanner2\src\ETS2
+        //F:\Users\E\ETScanner2\target\classes\ETS2
+
+
+        return returnvalue
+    }
+
+//-----------below is experiment with processbuilder
+
+    String executeOnShell(String fileNameScript, File workingDir) {
+
+        println "Commandx = "+ fileNameScript
+        println "WORKING DIRx = " + workingDir
+        println "XX22"
+        def process = new ProcessBuilder(addShellPrefix(fileNameScript))
+                .directory(workingDir)
+                .redirectErrorStream(true)
+                .start()
+
+        //process.waitFor();
+        println "XX3"
+       // process.inputStream.eachLine {println it}
+        println "XX4"
+//todo hij crasht omdat google niet openstaat, maar geen text
+        println "TextExecuteOnShell\n"
+        return //process.exitValue()
+    }
+
+    private def addShellPrefix(String fileNameScript) {
+        String[] commandArray = new String[4]
+        //commandArray[0] = "C:\\cygwin64\\bin\\sh"
+        commandArray[0] = "F:/SeleniumDownloadFolder/apache-groovy-binary-2.4.5/groovy-2.4.5/bin/groovy.bat" //CCCCC OF   GEEEEN CCCC
+        commandArray[1] = "-cp"
+        commandArray[2]= "\"F:/SeleniumDownloadFolder;F:/SeleniumDownloadFolder/geb-spock-0.12.2;C:/Users/E/.m2/repository/org/spockframework/spock-core/1.0-groovy-2.4;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/spock-core-1.0-groovy-2.4;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2/geb/error;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2/geb-core-0.12.2.jar;F:/SeleniumDownloadFolder/geb-spock-0.12.2/geb/spock;.;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-exceptions-0.12.2;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-api-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-waiting-0.12.2;F:\\Users\\E\\ETScanner2\\src\\main\\java;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-standalone-2.45.0;F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2;F:\\Users\\E\\ETScanner2\\target\\classes\""
+
+        //commandArray[2] = commandArray[2]+"xxxxx"
+        commandArray[3] = fileNameScript
+        println commandArray[0] + " " + commandArray[1] + " " + commandArray[2] + " " + commandArray[3]
+        return commandArray
+    }
+
 }
 /*
 class ResultObj{

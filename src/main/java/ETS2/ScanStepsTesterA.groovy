@@ -49,13 +49,17 @@ class ScanStepsTesterA extends GebReportingSpec {
     def "Step 01 Go To Google"() {
 
         when: "Go To Google"
+        println "Go To Google"
         to GooglePage
+
         then: "Google is opened"
-        waitFor { at GooglePage }
+        println "Google is opened"
+        at GooglePage
     }
 
     def "Step 02 Make one screenshot"(){
         when:
+        print "step02 startwhen"
         sleep(50)
         //to GettyPage
 
@@ -85,7 +89,7 @@ class ScanStepsTesterA extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpecxxxx() {
+    def setupSpecxx() {
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
