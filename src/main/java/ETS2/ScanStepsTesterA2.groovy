@@ -4,7 +4,9 @@ import geb.report.ReportState
 import geb.report.ScreenshotReporter
 import geb.spock.GebReportingSpec
 import org.openqa.selenium.By
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+
 
 //import ETS2.FunctionsDaoETS2;
 import org.openqa.selenium.chrome.ChromeOptions;//todo hoe krijgen we
@@ -60,7 +62,7 @@ class ScanStepsTesterA2 extends GebReportingSpec {
 
     def "Step 02 Make one screenshot"(){
         when:
-        print "step02 startwhen"
+        println "step02 startwhen"
         sleep(50)
         //to GettyPage
 
@@ -90,7 +92,19 @@ class ScanStepsTesterA2 extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpecxx() {
+    def setupSpecXXX() {
+        println "this is setupSpec A2 start"
+        //driver = getDriver();
+        //driver.manage().window()
+        //driver = cacheddriver;
+        //driver = new ChromeDriver();
+        driver = getDriver(browser, )
+        println "this is setupSpec A2 mid1"
+        print driver.getProperties()
+        sleep(2000)
+        //driver.manage()
+        //driver = new ChromeDriver()
+        println "this is setupSpec A2 end"
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
@@ -100,20 +114,27 @@ class ScanStepsTesterA2 extends GebReportingSpec {
             // current window is open, send commands or close
         }
 */      //driver.close()
-        ChromeOptions chromeoptions = new ChromeOptions();
+/*        ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         driver = new ChromeDriver(chromeoptions)
+*/
 //todo hoe krijg ik toch user-data-dir en dat ScanStepsTesterB toch het oppakt
         //driver.get("http://www.nu.nl")
     }
 
     def setup() {
-
+        //driver = getDriver();
+        //driver.manage()
     }
     def cleanup() {
     }
     def cleanupSpec() {
-//driver.close()
+     WebDriver cacheddriver = driver;
+driver.close()//TERUGZETTEN!
+        println "cleanupSpec A2\n"
+        //driver.quit()//TERUGZETTEN!
+
+
         //resetBrowser()?
     }
 

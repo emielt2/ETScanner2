@@ -126,7 +126,7 @@ public class ETS2_GUI extends Application {
         final TextField inputField03gebId = new TextField("id");
         final TextField inputField04gebString = new TextField("li.crossbrowser");
         final TextField inputField05gebAction = new TextField("click()");
-        final TextField inputField06GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTesterA.groovy");
+        final TextField inputField06GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTesterA2.groovy");
         final TextField outputField1CopyItem = new TextField("click button to get new result");
 
         urlInputField.setAlignment(Pos.TOP_LEFT);

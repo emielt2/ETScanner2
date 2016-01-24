@@ -77,6 +77,7 @@ System.setProperty("geb.download.path", DEFAULT_DOWNLOAD_PATH);
 if (Platform.LINUX.equals(Platform.getCurrent())) {
 	System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver-2.15-linux64");
 } else {
+	println "this is setproperty in gebconfig"
 	System.setProperty("webdriver.chrome.driver", "F:\\SeleniumDownloadFolder\\chromedriver_win32\\chromedriver.exe");
 }
 System.setProperty("webdriver.ie.driver", "src/test/resources/drivers/IEDriverServer-2.45.0_Win32_.exe");
@@ -92,19 +93,21 @@ environments {
  * @param browser Browser name
  * @return WebDriver
  */
-private WebDriver getDriver(def browser, def language) {
+//private WebDriver getDriver(def browser, def language) {
+public WebDriver getDriver(def browser, def language) {
 
 	if ("chrome".equalsIgnoreCase(browser)) {
-
+		println "this is webdriver stuff in gebconfig"//ETADD
 		DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
 		ChromeOptions chromeOptions = new ChromeOptions();
-		chromeOptions.addArguments("--start-maximized");
+		//chromeOptions.addArguments("--start-maximized");
+		chromeOptions.addArguments("user-data-dir=Y:\\Browser_profile");//ETADD
 		Map<String, Object> prefs = new HashMap<String, Object>();
 		prefs.put("intl.accept_languages", language);
 		chromeOptions.setExperimentalOption("prefs", prefs);
 		chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions)
 		def chromeDriver = new ChromeDriver(chromeCapabilities)
-		chromeDriver.manage().window().maximize()
+		//chromeDriver.manage().window().maximize()
 		chromeDriver
 
 	} else if ("firefox".equalsIgnoreCase(browser)) {

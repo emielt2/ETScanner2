@@ -27,7 +27,7 @@ import spock.lang.Stepwise
 //import ETS2.GettyPage;
 @Stepwise
 class ScanStepsTesterB2 extends GebReportingSpec {
-   
+   /*
     private boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -36,11 +36,11 @@ class ScanStepsTesterB2 extends GebReportingSpec {
             return false;
         }
     }
-
+*/
     //def "Click on something"(){
     def "Step 03 Click on something"(){
         when:
-        at GooglePage
+        //at GooglePage
         to GebishPage
 
         sleep(100)
@@ -80,7 +80,9 @@ class ScanStepsTesterB2 extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpecxx() {
+    def setupSpec() {
+
+        //def browser = new Browser(driver);
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
@@ -93,7 +95,7 @@ class ScanStepsTesterB2 extends GebReportingSpec {
       // ChromeOptions chromeoptions = new ChromeOptions();
        // chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         //driver = new ChromeDriver(chromeoptions)
-
+      //  driver = new Browser()
         //driver = new ChromeDriver()
 
         //driver.get("http://www.nu.nl")
