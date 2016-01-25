@@ -250,12 +250,13 @@ public class GroovyBrowserDaoETS2 {
             //returnvalue = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver.findElement(By.cssSelector(\"" + stringstring + "\")).click();}}")
             //String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver."); //DIT WERKT
             String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.driver.");
-            String scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ";System.out.println(gb.shellReturnString01);");
+            String scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
             String scriptEnd = new String("}}");
             String scriptTotal = scriptBegin + scriptMid + scriptEnd;
             returnvalue[0] = scriptMid //real scrtiptmid, is real code
             returnvalue[1] = scriptMid //india style
             returnvalue[2] = shellReturnString01 //voor scenetitle2
+            println "shellReturnString01====" + shellReturnString01
 
             //shellReturnString01 = scriptMid;
             //returnvalue= new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver.findElement(By."+bystring+ "(\""+stringstring+"\"))."+ actionstring+";}}")
