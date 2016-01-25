@@ -94,7 +94,7 @@ environments {
  * @return WebDriver
  */
 //private WebDriver getDriver(def browser, def language) {
-public WebDriver getDriver(def browser, def language) {
+public WebDriver getDriver(def browser, def String language) {
 
 	if ("chrome".equalsIgnoreCase(browser)) {
 		println "this is webdriver stuff in gebconfig"//ETADD
@@ -207,7 +207,7 @@ environments {
 	// See: http://code.google.com/p/selenium/wiki/ChromeDriver
 	chrome {
 		ChromeOptions chromeoptions = new ChromeOptions();
-		chromeoptions.addArguments("user-data-dirx=Y:\\Browser_profile");
+		chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
 		chromeoptions.addArguments("start-maximized");
 		//def browser1 = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: 'http://nu.nl')
 		println "environment Chrome"

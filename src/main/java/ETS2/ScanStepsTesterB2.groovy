@@ -81,7 +81,14 @@ class ScanStepsTesterB2 extends GebReportingSpec {
         return string1.concat(string2)
     }
     def setupSpec() {
+        println "this is setupSpec B2!!!"
 
+        //driver = browser.getDriver()
+        //browser.driver = browser.config.driver
+        //driver = browser.cache
+        //driver = browser.config.setCacheDriver(true)
+        //driver = new GebConfigExtraETS2().driver
+        driver = GroovyBrowserDaoETS2.giveDriver();
         //def browser = new Browser(driver);
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
@@ -100,7 +107,7 @@ class ScanStepsTesterB2 extends GebReportingSpec {
 
         //driver.get("http://www.nu.nl")
     }
-    def startbrowser(String a,String b){
+    def startBrowserXXX(String a,String b){
         //when:
         ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
@@ -118,13 +125,13 @@ class ScanStepsTesterB2 extends GebReportingSpec {
         //then:
         println "then1"
     }
-    def setup() {
+    def setupXXXX(){
 
     }
-    def cleanup() {
+    def cleanupXXX() {
     }
     def cleanupSpec() {
-driver.close()
+browser.driver.close()
         //resetBrowser()?
     }
 

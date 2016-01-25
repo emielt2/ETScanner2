@@ -56,7 +56,9 @@ public class GroovyBrowserDaoETS2 {
 
 
     static String baseUrl; //idee voor global
-    private static WebDriver driver;
+    public static WebDriver driver;
+    public static String shellReturnString01
+    public static String shellReturnString02
     //private static String baseUrl;
     private boolean acceptNextAlert = true;
     private static StringBuffer verificationErrors = new StringBuffer();
@@ -127,7 +129,7 @@ public class GroovyBrowserDaoETS2 {
         try {
             String returnvalue = "startvaluex"
             //return driver.findElement(new By.ByCssSelector(stringcss)).getText();
-
+            //browser2.drive{//etchanged
             browser2.drive{
                 try {
                     /* println "01--" + browser2.$("head")
@@ -231,21 +233,91 @@ public class GroovyBrowserDaoETS2 {
         return returnvalue
     }
 
+    String[] doGebSpockActionOnShell(String bystring, String stringstring, String actionstring) {
+
+        String[] returnvalue = ["Error!","Error!","Error!"]
+            //if(actionstring=="click()"){
+        try {
+            // browser2.getDriver().findElement(By.id(stringstring)).click();
+            //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+            // GroovyBrowserDaoETS2.browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+            //findElement(By.cssSelector(stringstring)).click();
+            //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
+            //returnvalue= new String("Label1:{GroovyBrowserDaoETS2.browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();}")
+            //returnvalue= new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(\""+stringstring+"\")).click();}}") //DEZE WERKTE OP BROWSER2
+
+
+            //returnvalue = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver.findElement(By.cssSelector(\"" + stringstring + "\")).click();}}")
+            //String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver."); //DIT WERKT
+            String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.driver.");
+            String scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ";System.out.println(gb.shellReturnString01);");
+            String scriptEnd = new String("}}");
+            String scriptTotal = scriptBegin + scriptMid + scriptEnd;
+            returnvalue[0] = scriptMid //real scrtiptmid, is real code
+            returnvalue[1] = scriptMid //india style
+            returnvalue[2] = shellReturnString01 //voor scenetitle2
+
+            //shellReturnString01 = scriptMid;
+            //returnvalue= new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver.findElement(By."+bystring+ "(\""+stringstring+"\"))."+ actionstring+";}}")
+            println scriptTotal
+            //driver.findElement(By.cssSelector(""+stringstring+"")).click();
+            //driver.findElement(By.cssSelector(stringstring)).click();
+
+            //returnvalue= new String("browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();")
+
+            //  StringBuilder eval = new StringBuilder("");
+            //  eval.append("Label1:")
+            //   println "Eval = " + eval
+//                returnvalue="println \"Hello22222\"";
+
+            Binding binding = new Binding();
+            GroovyShell shell = new GroovyShell(binding);
+
+            Object value = shell.evaluate(scriptTotal);
+
+        }
+        catch (Exception e){
+            returnvalue[2]=e.message.toString();
+            return returnvalue
+
+        }
+        return returnvalue
+
+    }
+
+
+
+
     String doGebSpockAction(String bystring, String stringstring, String actionstring) {
 
         String returnvalue = "returnvalue not changed something went wrong"
 
         browser2.drive{
+        //driver.navigate()??{
+
             if(actionstring=="click()"){
                // browser2.getDriver().findElement(By.id(stringstring)).click();
                 //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+               // GroovyBrowserDaoETS2.browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
+                //findElement(By.cssSelector(stringstring)).click();
                 //returnvalue="browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();"//werkt niet want geen browser2 zichtbaar
-                returnvalue= new String("Label1:{browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();}")
+                //returnvalue= new String("Label1:{GroovyBrowserDaoETS2.browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();}")
+                returnvalue= new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(\""+stringstring+"\")).click();}}")
+                println returnvalue
+                //returnvalue= new String("browser2.getDriver().findElement(By.cssSelector("+stringstring+")).click();")
+
+
+              //  StringBuilder eval = new StringBuilder("");
+              //  eval.append("Label1:")
+             //   println "Eval = " + eval
 //                returnvalue="println \"Hello22222\"";
 
                 Binding binding = new Binding();
                 GroovyShell shell = new GroovyShell(binding);
-                //Object value = shell.evaluate("for (x=0; x<5; x++){println \"Hello\"}; return x"); //prints 5 times hello
+                int y = 0;
+                print "yyy = " + y
+                //Object value1 = shell.evaluate("for (x=0; x<5; x++){println \"Hello\";y++}; return x"); //prints 5 times hello
+                print "yyy = " + y
                 Object value = shell.evaluate(returnvalue);
                 //todo medewerkers-it heeft oa  static content { overlayAanmakenNieuweZaak { $("div", id: contains("ZKN004_1"))} }
             }
@@ -479,6 +551,8 @@ String RunGroovyShell(String string1) {
     shell.run(new File("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\ScanStepsTesterB.groovy"));
     println("ScanStepsTesterB.groovy")
 */
+
+    //driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
     shell.run(new File(string1));//WORKS!!
     //shell.run(new File(string1),"Click on something()");//dit werkt niet, pakt gewoon string1 zonder rest te checken.??
     String x = new File(string1).toString();
@@ -501,7 +575,8 @@ String RunGroovyShell(String string1) {
         //executeOnShell(string1, new File("F:/Users/E/medewerkers-it/src"));
         //executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
        // executeOnShell(string1, new File("F:/Users/E/ETScanner2/"));
-        executeOnShell(string1, new File("F:/Users/E/ETScanner2/src/ETS2"));
+        //driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
+        executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
         String current = new java.io.File( "." ).getCanonicalPath();
         System.out.println("Current dir1:"+current);
         println "XX22"
@@ -549,11 +624,11 @@ String RunGroovyShell(String string1) {
         println commandArray[0] + " " + commandArray[1] + " " + commandArray[2] + " " + commandArray[3]
         return commandArray
     }
+    public static void storeDriver(WebDriver wd){
+        driver = wd;
+    }
+    public static WebDriver giveDriver(){
+        return driver;
+    }
 
 }
-/*
-class ResultObj{
-    String name;
-    double results
-}
-*/

@@ -6,10 +6,10 @@ import geb.spock.GebReportingSpec
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
-
+import org.openqa.selenium.remote.RemoteWebDriver
 
 //import ETS2.FunctionsDaoETS2;
-import org.openqa.selenium.chrome.ChromeOptions;//todo hoe krijgen we
+//todo hoe krijgen we
 
 /*
  * Copyright 2011 the original author or authors.
@@ -73,7 +73,7 @@ class ScanStepsTesterA2 extends GebReportingSpec {
             ReportState reportstate1 = new ReportState(browser,"label"+dateText,new File("F:\\Users\\E\\ETScanner2\\reports\\ETS2"));
             println(dateText + ".png created")
             screenshotReporter1.writeReport(reportstate1);
-            //sleep(200)
+            sleep(3000)
         }
 
     }
@@ -92,51 +92,77 @@ class ScanStepsTesterA2 extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpecXXX() {
+    def setupSpec() {
         println "this is setupSpec A2 start"
         //driver = getDriver();
         //driver.manage().window()
         //driver = cacheddriver;
         //driver = new ChromeDriver();
-        driver = getDriver(browser, )
+        //driver.clone()
+        //createBrowser()
+
+        browser.driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
+        //browser.driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
+        //browser.setDriver(driver)
+
+
+        //browser.setDriver(new GebConfigExtraETS2().getDriver("chrome", "nl"));
         println "this is setupSpec A2 mid1"
-        print driver.getProperties()
-        sleep(2000)
+       // print driver.getProperties()
+        //sleep(2000)
         //driver.manage()
         //driver = new ChromeDriver()
-        println "this is setupSpec A2 end"
+
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
             // current window is closed, switch to another or quit
-        } else {
+        }
+        //else {
+        if (null != ((RemoteWebDriver)driver).sessionId) {
             println "null nee"
             // current window is open, send commands or close
         }
-*/      //driver.close()
+        */
+      //driver.close()
 /*        ChromeOptions chromeoptions = new ChromeOptions();
         chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile2");
         driver = new ChromeDriver(chromeoptions)
 */
 //todo hoe krijg ik toch user-data-dir en dat ScanStepsTesterB toch het oppakt
         //driver.get("http://www.nu.nl")
+        println "this is setupSpec A2 end"
     }
 
-    def setup() {
+    def setupXXXX() {
         //driver = getDriver();
         //driver.manage()
     }
-    def cleanup() {
+    def cleanupXXXX() {
     }
     def cleanupSpec() {
-     WebDriver cacheddriver = driver;
-driver.close()//TERUGZETTEN!
+        GroovyBrowserDaoETS2.storeDriver( driver);
+        //giveDriver
+        //driver = browser.config.setCacheDriver(true)
+     //WebDriver cacheddriver = driver;
+//driver.close()//TERUGZETTEN!
+        //resetBrowser()
+       // driver = null
+        //driver.stop()
+        //browser.close()
+        //browser.close()
+        //driver = browser.driver
+        //browser.getBrowser().close()
+        //browser.setDriver(driver)
+        //browser.driver.close()
         println "cleanupSpec A2\n"
         //driver.quit()//TERUGZETTEN!
 
 
         //resetBrowser()?
     }
+
+
 
     /*void resetBrowser() {
 

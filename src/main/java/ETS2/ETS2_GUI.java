@@ -123,29 +123,32 @@ public class ETS2_GUI extends Application {
         final TextField urlInputField = new TextField("http://gebish.org/");
         final TextField inputField01css1 = new TextField("crossbrowser");
         final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
-        final TextField inputField03gebId = new TextField("id");
+        final TextField inputField03gebBy = new TextField("cssSelector");
         final TextField inputField04gebString = new TextField("li.crossbrowser");
-        final TextField inputField05gebAction = new TextField("click()");
-        final TextField inputField06GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTesterA2.groovy");
-        final TextField outputField1CopyItem = new TextField("click button to get new result");
+        final TextField inputField05gebAction = new TextField("getId()");
+        final TextField inputField06gebContentName = new TextField("ChooseVariableName!");
+        final TextField inputField07GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy");
+
+        final TextField outputField1ActionText = new TextField("click button to get new result");
+        final TextField outputField1ContentItem = new TextField("click button to get new result");
 
         urlInputField.setAlignment(Pos.TOP_LEFT);
         scenetitle1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         scenetitle2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
         scenetitle2.setText(""+scenetitle2.getWrappingWidth());
         scenetitle2.setWrappingWidth(500);
-        inputField06GroovyFile.setMinWidth(400);
+        inputField07GroovyFile.setMinWidth(400);
         //scenetitle2.scroll in grid ipv text?
 //--------------------------------
         hBox1.getChildren().addAll(urlInputField,button01OpenSession,button02CloseSession);
         hBox2.getChildren().addAll(inputField01css1,inputField02css2);
         vBox1.getChildren().addAll(button03Information,button04MouseOver,button05InfoAttribute,button06MouseClick,button07InfoGebSpockForms,button08SaveToSql);
-        hBox3.getChildren().addAll(inputField03gebId,inputField04gebString,inputField05gebAction);
+        hBox3.getChildren().addAll(inputField03gebBy,inputField04gebString,inputField05gebAction);
         hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
-        vBox5.getChildren().addAll(inputField06GroovyFile,button14GroovyShellRun,button15GroovyShellRunAlt);
+        vBox5.getChildren().addAll(inputField07GroovyFile,button14GroovyShellRun,button15GroovyShellRunAlt);
         //hBox6.getChildren().addAll();
         vBox2.getChildren().add(scenetitle2);
-        vBox3.getChildren().addAll(button11SpockGet,button12GebGet,button13MakeCopyableItem,outputField1CopyItem);
+        vBox3.getChildren().addAll(button11SpockGet,button12GebGet,inputField06gebContentName,button13MakeCopyableItem,outputField1ActionText,outputField1ContentItem);
         vBox2.setStyle("-fx-border-color: black;");
         vBox2.setMaxWidth(500);
         vBox2.setMinWidth(500);
@@ -167,8 +170,10 @@ public class ETS2_GUI extends Application {
         * Start Auto browser
         */
                 try {
-                   // groovybrowser.startSeleniumConnection(urlInputField.getText());
+                //    groovybrowser.startSeleniumConnection(urlInputField.getText());
            // seleniumInstance1.startSeleniumConnection();
+                    scenetitle2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy"));
+                    scenetitle2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3B.groovy"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -303,7 +308,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     GroovyClassLoader loader = new GroovyClassLoader();
-                    Class groovyClass = loader.parseClass(new File(inputField06GroovyFile.getText()));
+                    Class groovyClass = loader.parseClass(new File(inputField07GroovyFile.getText()));
 
                     GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
                     //Object res = groovyObject.invokeMethod("customConcat", new Object[]{"foo", "boo"});
@@ -312,7 +317,7 @@ public class ETS2_GUI extends Application {
                     Object res3 = groovyObject.invokeMethod("setupSpec", null);
 
 
-                   // System.out.println(groovybrowser.SandBox(inputField06GroovyFile.getText()));
+                   // System.out.println(groovybrowser.SandBox(inputField07GroovyFile.getText()));
 
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -323,8 +328,15 @@ public class ETS2_GUI extends Application {
         button11SpockGet.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    outputField1CopyItem.setText(groovybrowser.doGebSpockAction(inputField03gebId.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));
+                    //outputField1ActionText.setText(groovybrowser.doGebSpockAction(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkt prima
+                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText());
+                    //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));
+                    //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkte voor string
+                    outputField1ActionText.setText(result[0]);
+                    outputField1ContentItem.setText(inputField06gebContentName.getText() + " " + result[1]);
 
+                    scenetitle2.setText(result[2]);
+                    //scenetitle2.setText(ShellRet);
                 } catch (Exception e1) {
 
                     e1.printStackTrace();
@@ -335,8 +347,8 @@ public class ETS2_GUI extends Application {
         button14GroovyShellRun.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-//                    System.out.println(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
-                    scenetitle2.setText(groovybrowser.RunGroovyShell(inputField06GroovyFile.getText()));
+//                    System.out.println(groovybrowser.RunGroovyShell(inputField07GroovyFile.getText()));
+                    scenetitle2.setText(groovybrowser.RunGroovyShell(inputField07GroovyFile.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -346,7 +358,7 @@ public class ETS2_GUI extends Application {
         button15GroovyShellRunAlt.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    scenetitle2.setText(groovybrowser.RunGroovyShellAlt(inputField06GroovyFile.getText()));
+                    scenetitle2.setText(groovybrowser.RunGroovyShellAlt(inputField07GroovyFile.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -382,7 +394,7 @@ public class ETS2_GUI extends Application {
 
         //GridPane grid2 = new GridPane();
         //Label userName = new Label("FROM valuta:");
-        primaryStage.setScene(new Scene(grid1, 900, 900));
+        primaryStage.setScene(new Scene(grid1, 1000, 800));
         //todo add stuff to scene ofzo  https://community.oracle.com/thread/2587213?start=0&tstart=0
         primaryStage.getScene().fillProperty();
         primaryStage.alwaysOnTopProperty();
