@@ -233,11 +233,12 @@ public class GroovyBrowserDaoETS2 {
         return returnvalue
     }
 
-    String[] doGebSpockActionOnShell(String bystring, String stringstring, String actionstring) {
+    String[] doGebSpockActionOnShell(String elementString, String bystring, String stringstring, String actionstring, String contentNameString) {
 
-        String[] returnvalue = ["Error!","Error!","Error!"]
+        String[] returnvalue = ["Error!","Error!","Error!","Error!"]
             //if(actionstring=="click()"){
         try {
+            println "StartX"
             // browser2.getDriver().findElement(By.id(stringstring)).click();
             //browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
             // GroovyBrowserDaoETS2.browser2.getDriver().findElement(By.cssSelector(stringstring)).click();
@@ -249,13 +250,27 @@ public class GroovyBrowserDaoETS2 {
 
             //returnvalue = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver.findElement(By.cssSelector(\"" + stringstring + "\")).click();}}")
             //String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){new GroovyBrowserDaoETS2().driver."); //DIT WERKT
-            String scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.driver.");
-            String scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
-            String scriptEnd = new String("}}");
+            String scriptBegin;
+            String scriptMid;
+            String scriptEnd;
+
+            if(elementString=="") {
+                println "ja"
+                scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.driver.");
+                scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
+                scriptEnd = new String("}}");
+            }
+            else{//make:  overlayToevoegenNotitieAnoniem { $("div", id: contains("SUB008_1"))}
+                println "nee"
+                scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.driver.");
+                scriptMid = new String("findElement(By." + bystring + "(\"" + stringstring + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
+                scriptEnd = new String("}}");
+            }
             String scriptTotal = scriptBegin + scriptMid + scriptEnd;
             returnvalue[0] = scriptMid //real scrtiptmid, is real code
             returnvalue[1] = scriptMid //india style
             returnvalue[2] = shellReturnString01 //voor scenetitle2
+            returnvalue[3] = "hallo" //voor scenetitle2
             println "shellReturnString01====" + shellReturnString01
 
             //shellReturnString01 = scriptMid;
@@ -282,6 +297,7 @@ public class GroovyBrowserDaoETS2 {
             return returnvalue
 
         }
+        returnvalue[2]=GroovyBrowserDaoETS2.shellReturnString01;
         return returnvalue
 
     }

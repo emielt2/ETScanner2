@@ -123,6 +123,7 @@ public class ETS2_GUI extends Application {
         final TextField urlInputField = new TextField("http://gebish.org/");
         final TextField inputField01css1 = new TextField("crossbrowser");
         final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
+        final TextField inputField03AgebElement = new TextField("div");
         final TextField inputField03gebBy = new TextField("cssSelector");
         final TextField inputField04gebString = new TextField("li.crossbrowser");
         final TextField inputField05gebAction = new TextField("getId()");
@@ -329,13 +330,21 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     //outputField1ActionText.setText(groovybrowser.doGebSpockAction(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkt prima
-                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText());
+                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(),inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText(),inputField06gebContentName.getText());
                     //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));
                     //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkte voor string
                     outputField1ActionText.setText(result[0]);
                     outputField1ContentItem.setText(inputField06gebContentName.getText() + " " + result[1]);
+                    /**
+                     *  result[0] is
+                     *  result[1] is
+                     *  result[2] is
+                     *  result[3] is
+                     */
+
 
                     scenetitle2.setText(result[2]);
+                    //scenetitle2.setText(GroovyBrowserDaoETS2.shellReturnString01);
                     //scenetitle2.setText(ShellRet);
                 } catch (Exception e1) {
 
@@ -378,6 +387,7 @@ public class ETS2_GUI extends Application {
         grid1.add(hBox2, 0, grid1leftcounter++);
         grid1.add(vBox1, 0, grid1leftcounter++);
         grid1.add(sepHor2,0,grid1leftcounter++);
+        grid1.add(inputField03AgebElement,0,grid1leftcounter++);
         grid1.add(hBox3,0,grid1leftcounter++);
         grid1.add(vBox3,0,grid1leftcounter++);
         grid1.add(sepHor3,0,grid1leftcounter++);
