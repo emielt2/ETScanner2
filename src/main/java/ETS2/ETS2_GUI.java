@@ -142,7 +142,7 @@ public class ETS2_GUI extends Application {
         final Text textMakeChoice = new Text("MaualDrive or ShellBrowser?");
         final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
         final TextField urlInputField = new TextField("http://gebish.org/");
-        final TextField inputField01css1 = new TextField("crossbrowser");
+        final TextField inputField01css1 = new TextField("li.crossbrowser");
         final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
         final TextField inputField03AgebElement = new TextField("div");
         final TextField inputField03gebBy = new TextField("cssSelector");
@@ -200,9 +200,9 @@ public class ETS2_GUI extends Application {
         * Start Auto browser
         */
                 try {
-                //    groovybrowser.startSeleniumConnection(urlInputField.getText());
+                    groovybrowser.startSeleniumConnection(urlInputField.getText());
            // seleniumInstance1.startSeleniumConnection();
-                  //  outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy"));
+                    outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy"));
                   //  outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3B.groovy"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,7 +360,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button06MouseClick clicked");
-                    groovybrowser.mouseClick(inputField01css1.getText());
+                    groovybrowser.mouseClick(inputField01css1.getText(),choiceShellOrManual);
                     //seleniumInstance1.mouseClick(inputField01css1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();

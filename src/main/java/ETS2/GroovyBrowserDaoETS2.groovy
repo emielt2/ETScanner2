@@ -68,7 +68,7 @@ public class GroovyBrowserDaoETS2 {
     //final static Browser browser1 = new Browser();//(new ChromeDriver());
     //static def browser2; = new Browser(driver: new ChromeDriver(), baseUrl: 'http://nu.nl')//(new ChromeDriver());
     //static def browser2;
-    static WebDriver browser2;
+    static Browser browser2;
 
     public static void startSeleniumConnection(String inputUrl) throws Exception {
         System.out.println("Check1 " + baseUrl);
@@ -454,29 +454,15 @@ public class GroovyBrowserDaoETS2 {
             builder.moveToElement(driver.findElement(new By.ByCssSelector(cssstring1))).perform();
             //driver.findElement(new By.ByCssSelector("#tooltip > div > div.data > b:nth-child(1)"));
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }
 
-    public void mouseClick(String cssstring1) {
+    public void mouseClick(String cssstring1,String choiceBrowser) {
         try {
-            //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
-            // driver.findElement(By.cssSelector(cssstring1)).click();
-            //driver.findElement(new By.ByPartialLinkText("TEXTS")).click();
-            //driver.findElement(new By.ByPartialLinkText(cssstring1)).click();//DIT WAS ORIGINAL
-
-            browser2.drive{
-                browser2.$(cssstring1).click();
-            }
-
-            browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
-//todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
-            //driver.findElement(By.linkText("Texts")).click();
-            // driver.findElement(new By.ByLinkText("Texts")).click();
-            //driver.findElement(new By.ByCssSelector("#tooltip > div > div.data > b:nth-child(1)"));
+            if(choiceBrowser=="Manual") browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//WORKS FOR MANUAL BROWSER
+            if(choiceBrowser=="Shell") driver.findElement(By.cssSelector(""+cssstring1+"")).click();//WORKS FOR SHELL BROWSER
         } catch (Exception e) {
-            //e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }
@@ -519,31 +505,6 @@ public class GroovyBrowserDaoETS2 {
     }
 
 
-    String SandBox(String cssstring1) {
-        String returnvalue = "startvalue returnvalue";
-        try {
-            //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
-            // driver.findElement(By.cssSelector(cssstring1)).click();
-            //driver.findElement(new By.ByPartialLinkText("TEXTS")).click();
-            //driver.findElement(new By.ByPartialLinkText(cssstring1)).click();//DIT WAS ORIGINAL
-/*
-            browser2.drive{
-                browser2.$(cssstring1).click();
-            }
-*/
-            //browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
-            new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
-            //new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(""+stringstring+"")).click();
-//todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
-            //driver.findElement(By.linkText("Texts")).click();
-            // driver.findElement(new By.ByLinkText("Texts")).click();
-            //driver.findElement(new By.ByCssSelector("#tooltip > div > div.data > b:nth-child(1)"));
-        } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return returnvalue
-    }
 
 
 String RunGroovyShell(String string1) {
@@ -649,5 +610,19 @@ String RunGroovyShell(String string1) {
     public static WebDriver giveDriver(){
         return driver;
     }
+
+    String SandBox(String cssstring1) {
+        String returnvalue = "startvalue returnvalue";
+        try {
+            browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//WORKS FOR MANUAL BROWSER
+            driver.findElement(By.cssSelector(""+cssstring1+"")).click();//WORKS FOR SHELL BROWSER
+
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return returnvalue
+    }
+
 
 }
