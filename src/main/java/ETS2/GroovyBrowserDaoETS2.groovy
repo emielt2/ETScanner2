@@ -76,7 +76,7 @@ public class GroovyBrowserDaoETS2 {
         ChromeOptions chromeoptions = new ChromeOptions();
         //chromeoptions.addArguments("start-maximized");
         //chromeoptions.addArguments("user-data-dir=/path/to/your/custom/profile");
-        chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
+        chromeoptions.addArguments("user-data-dir=Y:\\Browser_profileManual");
         browser2 = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: inputUrl)//(new ChromeDriver());
         //driver = new ChromeDriver(chromeoptions);
 //        driver = new Browser();
@@ -519,27 +519,7 @@ public class GroovyBrowserDaoETS2 {
 
     String SandBox(String string1) {
         String returnvalue = "startvalue returnvalue";
-        Binding binding = new Binding();
-        GroovyShell shell = new GroovyShell(binding);
-        Script scrpt = shell.parse(new File(string1));
 
-        binding.setVariable("str1", "foo");
-        binding.setVariable("str2", "boo");
-        binding.setVariable("tools", scrpt);
-
-        //System.out.println(shell.evaluate("tools.customConcat(str1, str2)"));
-        //System.out.println(shell.evaluate("tools.\"Click on something\"()"));
-        System.out.println("File = "+ string1);
-        String str1 = "ABC"
-        String str2 = "DEF"
-        //System.out.println(shell.evaluate("tools.customConcat(str1,str2)"));
-        //System.out.println(shell.evaluate("tools.geefX()"));
-        //System.out.println(shell.evaluate("str1.concat(str2)"));
-        GroovyClassLoader loader = new GroovyClassLoader();
-        Class groovyClass = loader.parseClass(new File(string1));
-
-        GroovyObject groovyObject = (GroovyObject) groovyClass.newInstance();
-        //Object res = groovyObject.invokeMethod("customConcat", new Object[]{"foo", "boo"});
         return returnvalue
     }
 

@@ -9,7 +9,7 @@ class ScanStepsTester3B extends GebReportingSpec {
         when:
         to GebishPage
         then:
-        1==2//at GettyPage
+//        1==2//at GettyPage
         at GebishPage
     }
 
@@ -26,7 +26,7 @@ class ScanStepsTester3B extends GebReportingSpec {
     }
 
     def cleanupSpec() {
-        //browser.driver.close()
+        browser.driver.close()
     }
 
 }

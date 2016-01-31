@@ -40,6 +40,7 @@ class ScanStepsTester3A extends GebReportingSpec {
     }
 
     def setupSpec() {
+        print "setupSpec 3A"
         browser.driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
     }
 
