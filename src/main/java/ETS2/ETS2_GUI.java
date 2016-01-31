@@ -275,8 +275,6 @@ public class ETS2_GUI extends Application {
             }
         });
 
-
-
         button01OpenSession.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 //statusText.setFill(Color.BLUE);
@@ -309,7 +307,6 @@ public class ETS2_GUI extends Application {
                 }
             }
         });
-
 
         button03Information.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
@@ -438,29 +435,9 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("Sandbox clicked");
-                    /*if(choiceShellOrManual == "Shell"){//swap from ShellBrowser=vBox5
-                        hBox1.setDisable(false);
-                        vBox5.setDisable(true);
-
-                        //primStage.setScene(sceneManualDrive);
-                        outText2.setText(choiceShellOrManual = "Manual");
-                    }
-                    else{//swap from "ManualDrive" = hBox1
-                        hBox1.setDisable(true);
-                        vBox5.setDisable(false);
-                        //primStage.setScene(sceneShellBrowser);
-                        outText2.setText(choiceShellOrManual = "Shell");
-                    }
-                      */
-                    //hBox1.setVisible(false);
-
-
-
-                    //groovybrowser.SandBox(inputField07GroovyFile.getText());
-
-
-
-
+                    //groovybrowser.mouseClick(inputField01css1.getText());
+                    groovybrowser.SandBox(inputField01css1.getText());
+                    //seleniumInstance1.mouseClick(inputField01css1.getText());
 
                 } catch (Exception e1) {
                     e1.printStackTrace();

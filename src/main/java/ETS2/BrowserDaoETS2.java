@@ -31,7 +31,7 @@ import static org.junit.Assert.fail;
 /**
  * Created by E on 29/12/2015.
  */
-public class BrowserDaoETS2 {
+public class BrowserDaoETS2 {//COPIED TO .GROOVY-FILE! GroovyBrowserDaoETS2
     //static ChromeOptions chromeoptions = new ChromeOptions();
     //WebDriver driver = new ChromeDriver(chromeoptions.addArguments("start-maximized"));
     public BrowserDaoETS2(String input){

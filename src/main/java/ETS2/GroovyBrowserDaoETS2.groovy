@@ -56,7 +56,7 @@ public class GroovyBrowserDaoETS2 {
 
 
     static String baseUrl; //idee voor global
-    public static WebDriver driver;
+    public static WebDriver driver;//was driver
     public static String shellReturnString01
     public static String shellReturnString02
     //private static String baseUrl;
@@ -67,7 +67,8 @@ public class GroovyBrowserDaoETS2 {
     //final static Browser browser1 = new Browser();//(new ChromeDriver());
     //final static Browser browser1 = new Browser();//(new ChromeDriver());
     //static def browser2; = new Browser(driver: new ChromeDriver(), baseUrl: 'http://nu.nl')//(new ChromeDriver());
-    static def browser2;
+    //static def browser2;
+    static WebDriver browser2;
 
     public static void startSeleniumConnection(String inputUrl) throws Exception {
         System.out.println("Check1 " + baseUrl);
@@ -469,6 +470,7 @@ public class GroovyBrowserDaoETS2 {
                 browser2.$(cssstring1).click();
             }
 
+            browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
 //todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
             //driver.findElement(By.linkText("Texts")).click();
             // driver.findElement(new By.ByLinkText("Texts")).click();
@@ -517,9 +519,29 @@ public class GroovyBrowserDaoETS2 {
     }
 
 
-    String SandBox(String string1) {
+    String SandBox(String cssstring1) {
         String returnvalue = "startvalue returnvalue";
-
+        try {
+            //good sometimes driver.findElement(new By.ByCssSelector(cssstring1)).click();
+            // driver.findElement(By.cssSelector(cssstring1)).click();
+            //driver.findElement(new By.ByPartialLinkText("TEXTS")).click();
+            //driver.findElement(new By.ByPartialLinkText(cssstring1)).click();//DIT WAS ORIGINAL
+/*
+            browser2.drive{
+                browser2.$(cssstring1).click();
+            }
+*/
+            //browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
+            new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(""+cssstring1+"")).click();//ETTEST
+            //new GroovyBrowserDaoETS2().browser2.getDriver().findElement(By.cssSelector(""+stringstring+"")).click();
+//todo meerdere opties teruggeven (alle By.By varianten die Rashmi/Geb wil. Optie voor gebruiker om toe te voegen aan database for later use;
+            //driver.findElement(By.linkText("Texts")).click();
+            // driver.findElement(new By.ByLinkText("Texts")).click();
+            //driver.findElement(new By.ByCssSelector("#tooltip > div > div.data > b:nth-child(1)"));
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
         return returnvalue
     }
 

@@ -18,14 +18,16 @@ class ScanStepsTester3A extends GebReportingSpec {
         }
     }
 
-    def "Step 01 Go To Google"() {
+    def "Step 01 Go To Googlexx"() {
         when: "Go To Google"
         println "Go To Google"
-        to GooglePage
+        //to GooglePage
+        to GebishPage
 
         then: "Google is opened"
         println "Google is opened"
-        at GooglePage
+        //at GooglePage
+        at GebishPage
     }
 
     def "Step 02 Make one screenshot"(){
