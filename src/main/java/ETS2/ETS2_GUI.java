@@ -141,13 +141,13 @@ public class ETS2_GUI extends Application {
         final TextArea outText2 = new TextArea("Last results:");
         final Text textMakeChoice = new Text("MaualDrive or ShellBrowser?");
         final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
-        final TextField urlInputField = new TextField("http://gebish.org/");
+        final TextField urlInputField = new TextField("http://www.google.nl");//http://gebish.org/
         final TextField inputField01css1 = new TextField("li.crossbrowser");
         final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
         final TextField inputField03AgebElement = new TextField("div");
-        final TextField inputField03gebBy = new TextField("cssSelector");
-        final TextField inputField04gebString = new TextField("li.crossbrowser");
-        final TextField inputField05gebAction = new TextField("getId()");
+        final TextField inputField03gebBy = new TextField("name");
+        final TextField inputField04gebString = new TextField("btnI");//li.crossbrowser
+        final TextField inputField05gebAction = new TextField("getProperties()");
         final TextField inputField06gebContentName = new TextField("ChooseVariableName!");
         final TextField inputField07GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy");
 
@@ -200,9 +200,9 @@ public class ETS2_GUI extends Application {
         * Start Auto browser
         */
                 try {
-                    groovybrowser.startSeleniumConnection(urlInputField.getText());
+                    //groovybrowser.startSeleniumConnection(urlInputField.getText());
            // seleniumInstance1.startSeleniumConnection();
-                    outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy"));
+                    //outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy"));
                   //  outText2.setText(groovybrowser.RunGroovyShell("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3B.groovy"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -334,6 +334,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button04MouseOver clicked");
+                    groovybrowser.mouseOver(inputField01css1.getText(),choiceShellOrManual);
                     //seleniumInstance1.mouseOver(inputField01css1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -361,6 +362,7 @@ public class ETS2_GUI extends Application {
                 try {
                     System.out.println("button06MouseClick clicked");
                     groovybrowser.mouseClick(inputField01css1.getText(),choiceShellOrManual);
+
                     //seleniumInstance1.mouseClick(inputField01css1.getText());
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -386,7 +388,7 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     //outputField1ActionText.setText(groovybrowser.doGebSpockAction(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkt prima
-                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(),inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText(),inputField06gebContentName.getText());
+                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(),inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText(),inputField06gebContentName.getText(),choiceShellOrManual);
                     //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));
                     //outputField1ActionText.setText(groovybrowser.doGebSpockActionOnShell(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkte voor string
                     outputField1ActionText.setText(result[0]);
@@ -435,9 +437,10 @@ public class ETS2_GUI extends Application {
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("Sandbox clicked");
-                    //groovybrowser.mouseClick(inputField01css1.getText());
-                    groovybrowser.SandBox(inputField01css1.getText());
-                    //seleniumInstance1.mouseClick(inputField01css1.getText());
+
+                    //groovybrowser.SandBox(inputField01css1.getText());
+                    outText2.setText(groovybrowser.SandBox("F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2\\SimpleSixTester.groovy"));
+
 
                 } catch (Exception e1) {
                     e1.printStackTrace();

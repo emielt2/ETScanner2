@@ -106,7 +106,7 @@ class ScanStepsTester extends GebReportingSpec {
         println "this is customConcat"
         return string1.concat(string2)
     }
-    def setupSpec() {
+    def setupSpecxx() {
 /*
         if (null == ((RemoteWebDriver)driver).sessionId) {
             println "null ja"
@@ -146,7 +146,7 @@ class ScanStepsTester extends GebReportingSpec {
     def cleanup() {
     }
     def cleanupSpec() {
-driver.close()
+//driver.close()
         //resetBrowser()?
     }
 
