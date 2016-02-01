@@ -640,31 +640,47 @@ String RunGroovyShell(String string1) {
             //String x = new File(string1).toString();
             //File file1 = new File(string1);
             //returnvalue = new File(string1).text
+            int number=5
             int deffoundindex1=0;
-            //int deffoundindex2=0;
-            int statementstart=0
-            int statementend=0
-            int nextopenbracket=0
-            int nextclosebrack=0
             builderFileA = new StringBuilder(new File(string1).text);
-            deffoundindex1 = builderFileA.indexOf("def \"");
-            //statementstart =  builderFileA.indexOf("{",deffoundindex1);
-            nextopenbracket=  builderFileA.indexOf("{",deffoundindex1);
-            nextclosebracket=  builderFileA.indexOf("{",deffoundindex1);
-            int amountOpenBracket = 1;
-            while(amountOpenBracket>0){
-                nextopenbracket = builderFileA.indexOf("{",nextopenbracket);
-                nextclosebracket = builderFileA.indexOf("}",nextclosebracket);
-                if(nextopenbracket==-1){
-                    statementend=nextclosebracket;
-                    amountOpenBracket--;
-                }
-                if(nextclosebracket<nextopenbracket){
-                    statementend=nextclosebracket
-                }
-            }
-            nextopeningbracket = builderFileA.indexOf("{",deffoundindex1);
 
+            for(int i = 0 ;i<number ;i++){
+
+
+
+                Integer statementstart=0
+                int statementend=0
+                int nextopenbracket=0
+                int nextclosebracket=0
+                String defname
+                deffoundindex1 = builderFileA.indexOf("def \"",deffoundindex1);
+                println "deffoundindex1 =====================" + deffoundindex1
+
+                nextopenbracket = builderFileA.indexOf("{",deffoundindex1);
+                statementstart = nextopenbracket
+                defname = builderFileA.toString().substring(deffoundindex1,nextopenbracket)
+                int amountOpenBrackets = 1;
+                nextclosebracket = deffoundindex1;
+                while(amountOpenBrackets>0){
+                    nextopenbracket = builderFileA.indexOf("{",++nextopenbracket);
+                    nextclosebracket = builderFileA.indexOf("}",++nextclosebracket);
+                    if(nextopenbracket==-1||nextclosebracket<nextopenbracket){
+                        statementend=nextclosebracket
+                        amountOpenBrackets--;
+                        println("nextopenbracket is:" + nextopenbracket)
+                        println("nextclosebracket is:" + nextclosebracket)
+                        println("Start is:" + statementstart)
+                        println("End is  :" + statementend)
+                    }
+                }
+                println "deffoundindex1 =====================" + deffoundindex1
+                println("Start result is:" + statementstart)
+                println("End result  is  :" + statementend)
+                //builderFileA.delete(deffoundindex1,statementend+1)
+                builderFileA.replace(deffoundindex1,statementend+1,("/*"+defname+" REMOVED*/"))
+                deffoundindex1=statementstart
+                println "statementstart =x=x==" + statementstart + " \n"
+            }
 
 
 
