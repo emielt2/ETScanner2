@@ -21,8 +21,10 @@ class ScanStepsTester3B extends GebReportingSpec {
     }
 
     def setupSpec() {
+
         println "this is setupSpec B2!!!"
         driver = GroovyBrowserDaoETS2.giveDriver();
+
     }
 
     def cleanupSpec() {

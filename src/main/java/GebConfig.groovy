@@ -51,7 +51,7 @@ def final REPORT_DIR = 'target/reports'
 def final DEFAULT_DOWNLOAD_PATH = "C://Users/IEUser/Downloads/"
 
 //TECHNICAL SETTINGS
-def final WAITFOR_TIMEOUT = 3
+def final WAITFOR_TIMEOUT = 4
 def final WAITFOR_RETRY = 0.5
 def final WAIT_AT_KEYWORD_AT = true
 def final WAIT_TIME = 2000
@@ -230,7 +230,9 @@ environments {
 
 // To run the tests with all browsers just run “./gradlew test”
 
-baseUrl = "http://gebish.org"
+//baseUrl = "http://xgebish.org"//deze wordt gebruikt door de ProcessBuilder!
+baseUrl = "about:blank"//deze wordt gebruikt door de ProcessBuilder!
+WebDriver gebconfDriver;
 
 //set the report output directory
 reportsDir = "reports/"

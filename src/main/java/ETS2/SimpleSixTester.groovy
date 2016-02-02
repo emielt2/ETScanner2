@@ -1,5 +1,6 @@
 package ETS2
 import geb.spock.GebReportingSpec
+import ETS2.GettyPage
 import spock.lang.Stepwise
 @Stepwise
 class SimpleSixTester extends GebReportingSpec {
@@ -44,10 +45,14 @@ class SimpleSixTester extends GebReportingSpec {
         when:
         sleep(10);
         then:
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current dir using System DURING SCRIPT:" +currentDir);
         sleep(10);
     }
 
-    def cleanupSpecxxx() {
+    def cleanupSpec() {
+        browser.driver.quit()
+
         println "end"
     }
 }

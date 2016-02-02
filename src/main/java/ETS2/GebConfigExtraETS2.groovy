@@ -35,7 +35,7 @@ import org.openqa.selenium.remote.DesiredCapabilities
 import java.util.logging.Level
 import java.util.logging.Logger
 
-
+WebDriver extraDriver;
 
 public WebDriver getDriver(def browser, def String language) {
 

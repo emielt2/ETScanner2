@@ -563,7 +563,7 @@ String RunGroovyShell(String string1) {
     return returnvalue
 }
 
-    String RunGroovyShellAlt(String string1) {
+    String RunProcessBuilder(String string1) {
         String returnvalue = "startvalue returnvalue";
         //Binding binding = new Binding();
 /*        GroovyShell shell = new GroovyShell();
@@ -575,7 +575,12 @@ String RunGroovyShell(String string1) {
         //executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
        // executeOnShell(string1, new File("F:/Users/E/ETScanner2/"));
         //driver = new GebConfigExtraETS2().getDriver("chrome", "nl")
-        executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
+
+
+
+        //executeOnShell(string1, new File("F:/Users/E/ETScanner2/src"));
+        executeOnShell(string1, new File("F:\\Users\\E\\medewerkers-it"));
+
         String current = new java.io.File( "." ).getCanonicalPath();
         System.out.println("Current dir1:"+current);
         println "XX22"
@@ -604,9 +609,8 @@ String RunGroovyShell(String string1) {
 
         //process.waitFor();
         println "XX3"
-       // process.inputStream.eachLine {println it}
+        process.inputStream.eachLine {println it}
         println "XX4"
-//todo hij crasht omdat google niet openstaat, maar geen text
         println "TextExecuteOnShell\n"
         return //process.exitValue()
     }
@@ -616,7 +620,7 @@ String RunGroovyShell(String string1) {
         //commandArray[0] = "C:\\cygwin64\\bin\\sh"
         commandArray[0] = "F:/SeleniumDownloadFolder/apache-groovy-binary-2.4.5/groovy-2.4.5/bin/groovy.bat" //CCCCC OF   GEEEEN CCCC
         commandArray[1] = "-cp"
-        commandArray[2]= "\"F:/SeleniumDownloadFolder;F:/SeleniumDownloadFolder/geb-spock-0.12.2;C:/Users/E/.m2/repository/org/spockframework/spock-core/1.0-groovy-2.4;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/spock-core-1.0-groovy-2.4;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2/geb/error;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2/geb-core-0.12.2.jar;F:/SeleniumDownloadFolder/geb-spock-0.12.2/geb/spock;.;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-exceptions-0.12.2;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-api-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-waiting-0.12.2;F:\\Users\\E\\ETScanner2\\src\\main\\java;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-standalone-2.45.0;F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2;F:\\Users\\E\\ETScanner2\\target\\classes\""
+        commandArray[2]= "\"F:/SeleniumDownloadFolder;F:/SeleniumDownloadFolder/geb-spock-0.12.2;C:/Users/E/.m2/repository/org/spockframework/spock-core/1.0-groovy-2.4;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/spock-core-1.0-groovy-2.4;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2;F:/SeleniumDownloadFolder/Test_JAR_uitpakken/geb-core-0.12.2/geb/error;C:/Users/E/.m2/repository/org/gebish/geb-core/0.12.2/geb-core-0.12.2.jar;F:/SeleniumDownloadFolder/geb-spock-0.12.2/geb/spock;.;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-exceptions-0.12.2;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-api-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-2.45.0;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\geb-waiting-0.12.2;F:\\Users\\E\\ETScanner2\\src\\main\\java;F:\\SeleniumDownloadFolder\\Test_JAR_uitpakken\\selenium-server-standalone-2.45.0;F:\\Users\\E\\ETScanner2\\src\\main\\java\\ETS2;F:\\Users\\E\\ETScanner2\\target\\classes;F:\\Users\\E\\medewerkers-it\\src\\test\\groovy\\pageobjects\\contact;F:\\Users\\E\\medewerkers-it\\target\\test-classes\\pageobjects\\contact;F:\\Users\\E\\medewerkers-it\\target\\test-classes\""
 
         //commandArray[2] = commandArray[2]+"xxxxx"
         commandArray[3] = fileNameScript

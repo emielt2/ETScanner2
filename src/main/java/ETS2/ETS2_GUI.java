@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.openqa.selenium.WebDriver;
 
 import java.util.Arrays;
 //---
@@ -34,6 +35,7 @@ public class ETS2_GUI extends Application {
     Scene sceneManualDrive;
     Scene sceneShellBrowser;
     String choiceShellOrManual ="Shell";//or "Manual"
+    WebDriver storedWebDriver;
     @Override
     public void start(Stage primaryStage){
         primStage = primaryStage;
@@ -67,8 +69,8 @@ public class ETS2_GUI extends Application {
         Button button11SpockGet = new Button("SpockGet");
         Button button12GebGet = new Button("GebGet");
         Button button13MakeCopyableItem = new Button("Make item");
-        final Button button14GroovyShellRun = new Button("Run script");
-        final Button button15GroovyShellRunAlt = new Button("Run scriptsX");
+        final Button button14GroovyShellRun = new Button("Run scripts groovyshell");
+        final Button button15ProcessBuilderRun = new Button("Run scripts ProcessBuilder");
 //-------------------------------
         final CheckBox checkbox1 = new CheckBox("PNG");//.setselected?
         checkbox1.setSelected(true);
@@ -149,7 +151,7 @@ public class ETS2_GUI extends Application {
         final TextField inputField04gebString = new TextField("btnI");//li.crossbrowser
         final TextField inputField05gebAction = new TextField("getProperties()");
         final TextField inputField06gebContentName = new TextField("ChooseVariableName!");
-        final TextField inputField07GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester3A.groovy");
+        final TextField inputField07GroovyFile = new TextField("F:/Users/E/ETScanner2/src/main/java/ETS2/ScanStepsTester4A.groovy");
 
         final TextField outputField1ActionText = new TextField("click button to get new result");
         final TextField outputField1ContentItem = new TextField("click button to get new result");
@@ -169,7 +171,7 @@ public class ETS2_GUI extends Application {
         hBox3.getChildren().addAll(inputField03gebBy,inputField04gebString,inputField05gebAction);
         hBox4.getChildren().addAll(checkbox1,checkbox2,button09Report);
 
-        vBox5.getChildren().addAll(inputField07GroovyFile,button14GroovyShellRun,button15GroovyShellRunAlt);
+        vBox5.getChildren().addAll(inputField07GroovyFile,button14GroovyShellRun,button15ProcessBuilderRun);
         //hBox6.getChildren().addAll();
         vBox2.getChildren().add(outText2);
         vBox3.getChildren().addAll(button11SpockGet,button12GebGet,inputField06gebContentName,button13MakeCopyableItem,outputField1ActionText,outputField1ContentItem);
@@ -422,10 +424,10 @@ public class ETS2_GUI extends Application {
             }
         });
 
-        button15GroovyShellRunAlt.setOnAction(new EventHandler<ActionEvent>() {
+        button15ProcessBuilderRun.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    outText2.setText(groovybrowser.RunGroovyShellAlt(inputField07GroovyFile.getText()));
+                    outText2.setText(groovybrowser.RunProcessBuilder(inputField07GroovyFile.getText()));
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
