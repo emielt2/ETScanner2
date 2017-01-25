@@ -143,7 +143,8 @@ public class ETS2_GUI extends Application {
         final TextArea outText2 = new TextArea("Last results:");
         final Text textMakeChoice = new Text("MaualDrive or ShellBrowser?");
         final Text textDrivFindElAtt = new Text("Driver FindElement/Attributes:");
-        final TextField urlInputField = new TextField("http://www.google.nl");//http://gebish.org/
+        //final TextField urlInputField = new TextField("http://www.google.nl");//switch
+        final TextField urlInputField = new TextField("http://gebish.org/");//switch
         final TextField inputField01css1 = new TextField("li.crossbrowser");
         final TextField inputField02css2 = new TextField("innerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
         final TextField inputField03AgebElement = new TextField("div");
@@ -338,6 +339,7 @@ public class ETS2_GUI extends Application {
         });
 
         button04MouseOver.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
             public void handle(ActionEvent e) {
                 try {
                     System.out.println("button04MouseOver clicked");
