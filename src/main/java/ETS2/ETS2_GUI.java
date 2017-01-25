@@ -130,12 +130,12 @@ public class ETS2_GUI extends Application {
         sepHor4.setMinWidth(360);
         sepHor5.setMinWidth(360);
         sepVer.setOrientation(Orientation.VERTICAL);//Vertical separator
-        BackgroundFill bgf1 = new BackgroundFill(Paint.valueOf("123"), CornerRadii.EMPTY, Insets.EMPTY);
+        /*BackgroundFill bgf1 = new BackgroundFill(Paint.valueOf("123"), CornerRadii.EMPTY, Insets.EMPTY);
         sepHor1.setBackground(new Background(bgf1));
         sepHor2.setBackground(new Background(bgf1));
         sepHor3.setBackground(new Background(bgf1));
         sepHor4.setBackground(new Background(bgf1));
-        sepHor5.setBackground(new Background(bgf1));
+        sepHor5.setBackground(new Background(bgf1));*/
 //--------------------------------
         final Text statusText = new Text();
         final Text outText1 = new Text("Welcome Citizen47281");
@@ -158,7 +158,7 @@ public class ETS2_GUI extends Application {
 
         urlInputField.setAlignment(Pos.TOP_LEFT);
         outText1.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        outText2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
+        //outText2.setFont(Font.font("Tahoma", FontWeight.NORMAL, 13));
        // outText2.setWrappingWidth(500);
         outText2.setMinHeight(790);
         outText2.setMaxHeight(790);
@@ -315,11 +315,16 @@ public class ETS2_GUI extends Application {
                 try {
                     System.out.println("button03Information clicked");
                     System.out.println("choiceShellOrManual=" + choiceShellOrManual);
-                    switch(choiceShellOrManual){
-                        case "Shell":outText2.setText("ShellBrowser");
+                    char choiceShellOrManualCHAR='S';
+                    if(choiceShellOrManual.equals("Shell"))choiceShellOrManualCHAR='S';
+                    if(choiceShellOrManual.equals("Manual"))choiceShellOrManualCHAR='M';
+
+
+                    switch(choiceShellOrManualCHAR){
+                        case 'S':outText2.setText("ShellBrowser");
                             System.out.println("case shell");
                                             break;
-                        case "Manual": outText2.setText((groovybrowser.getSelectorText(inputField01css1.getText(),inputField02css2.getText())));
+                        case 'M': outText2.setText((groovybrowser.getSelectorText(inputField01css1.getText(),inputField02css2.getText())));
                             System.out.println("case manual");
                                             break;
 
@@ -505,7 +510,7 @@ public class ETS2_GUI extends Application {
 */
         primStage.setScene(sceneManualDrive);
         primStage.getScene().fillProperty();
-        primStage.alwaysOnTopProperty();
+        //primStage.alwaysOnTopProperty();
         primStage.show();
 
         //togglebutton01Shell.fire();

@@ -97,7 +97,7 @@ environments {
 public WebDriver getDriver(def browser, def String language) {
 
 	if ("chrome".equalsIgnoreCase(browser)) {
-		println "this is webdriver stuff in gebconfig"//ETADD
+		println "this is webdriver stuff in MAIN/gebconfig"//ETADD
 		DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
 		ChromeOptions chromeOptions = new ChromeOptions();
 		//chromeOptions.addArguments("--start-maximized");

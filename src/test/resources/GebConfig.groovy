@@ -95,9 +95,11 @@ environments {
 private WebDriver getDriver(def browser, def language) {
 
 	if ("chrome".equalsIgnoreCase(browser)) {
-
+		println "this is webdriver stuff in TEST/gebconfig 11111"//ETADD
 		DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
 		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("user-data-dir=Y:\\Browser_profileAAA");//ETADD
+
 		chromeOptions.addArguments("--start-maximized");
 		Map<String, Object> prefs = new HashMap<String, Object>();
 		prefs.put("intl.accept_languages", language);
@@ -204,11 +206,12 @@ environments {
 	// See: http://code.google.com/p/selenium/wiki/ChromeDriver
 	chrome {
 		ChromeOptions chromeoptions = new ChromeOptions();
-		chromeoptions.addArguments("user-data-dirx=Y:\\Browser_profile");
+		println "this is webdriver stuff in TEST/gebconfig 22222"//ETADD
+		chromeoptions.addArguments("user-data-dir=Y:\\Browser_profile");
 		chromeoptions.addArguments("start-maximized");
 		//def browser1 = new Browser(driver: new ChromeDriver(chromeoptions), baseUrl: 'http://nu.nl')
 		println "environment Chrome"
-		driver = { new ChromeDriver(chromeoptionsx) }
+		driver = { new ChromeDriver(chromeoptions) }
 	}
 	
 	// run via “./gradlew firefoxTest”

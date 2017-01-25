@@ -27,7 +27,7 @@ class ScanStepsTester4B extends GebReportingSpec {
         //WebDriver driver = new GroovyBrowserDaoETS2().giveDriver();
         browser.driver = new GroovyBrowserDaoETS2().giveDriver();
         browser.driver = new ETS2_GUI().storedWebDriver;
-        /TODO waarom geen overname browser
+        //TODO waarom geen overname browser
         //driver = new ETS2_GUI().storedWebDriver;
         //driver = gebconfDriver;
         //GebConfigExtraETS2 gcf = new GebConfigExtraETS2();
