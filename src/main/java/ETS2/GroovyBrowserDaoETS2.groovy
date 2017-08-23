@@ -73,7 +73,8 @@ public class GroovyBrowserDaoETS2 {
     public static void startSeleniumConnection(String inputUrl) throws Exception {
         System.out.println("Check1 " + baseUrl);
         //driver = new FirefoxDriver();
-        System.setProperty("webdriver.chrome.driver", "F:\\SeleniumDownloadFolder\\chromedriver_win32\\chromedriver.exe");//todo setproperty bekijken
+        //System.setProperty("webdriver.chrome.driver", "F:\\SeleniumDownloadFolder\\chromedriver_win32\\chromedriver.exe");//todo setproperty bekijken
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");//todo setproperty bekijken
         ChromeOptions chromeoptions = new ChromeOptions();
         //chromeoptions.addArguments("start-maximized");
         //chromeoptions.addArguments("user-data-dir=/path/to/your/custom/profile");

@@ -27,6 +27,8 @@ class GettyPage extends Page {
     }
     def static printMe(){
         println "Dit is printme() van ETS2\\GettyPage"
+        homelogo.getProperties()
+        homelogo.click()
         return true
     }
 }
