@@ -16,7 +16,8 @@ import geb.report.ReportState;
 import geb.report.ScreenshotReporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -24,7 +25,8 @@ import org.openqa.selenium.NoSuchElementException
 
 
 import javax.lang.model.element.Element;
-import java.io.File;
+import java.io.File
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.fail;
@@ -313,7 +315,7 @@ public class GroovyBrowserDaoETS2 {
                 } else returnvalue[3] = "Exception occurred"
 
                 if (returnvalue[2].contains("Cannot invoke method getDriver() on null object")) {
-                    returnvalue[2] = returnvalue[2]+" (Browser session is not started!)."
+                    returnvalue[2] = returnvalue[2] + " (Browser session is not started!)."
                 }
                 return returnvalue
 
@@ -323,6 +325,148 @@ public class GroovyBrowserDaoETS2 {
 
 
         returnvalue[2] = GroovyBrowserDaoETS2.shellReturnString01;
+        returnvalue[3] = "Action successful"
+        return returnvalue
+
+    }
+
+    String preparedMethod(String actionstringvar,WebElement webElementvar) {
+        Class<?> webClass = Class.forName("org.openqa.selenium.WebElement");
+        Method webMethod;
+        println ("actionstring="+actionstringvar)
+
+        try{
+            if (actionstringvar.contains("getAttribute") | actionstringvar.contains("getCssValue") | actionstringvar.contains("sendKeys")) {
+                //getAttribute("abc")
+                String userInputString = actionstringvar.substring(actionstringvar.indexOf("\"") + 1, actionstringvar.lastIndexOf("\"") )
+                println "userInputString="+userInputString
+                actionstringvar = actionstringvar.substring(0, actionstringvar.indexOf("("))
+                println ("actionstring="+actionstringvar)
+                webMethod = webClass.getDeclaredMethod(actionstringvar, String.class);
+                return webMethod.invoke(webElementvar,userInputString).toString()
+            }
+            else{
+                actionstringvar = actionstringvar.substring(0,actionstringvar.length()-2)
+                println ("actionstringvar="+actionstringvar)
+                webMethod = webClass.getDeclaredMethod(actionstringvar);
+                return webMethod.invoke(webElementvar).toString()
+            }
+        }
+        catch (Exception e){
+            println e.message.toString()
+        }
+
+    }
+
+    String[] doActionJava(String elementString, String bystring, String selectorString, String actionstring, String contentNameString, String choiceBrowser) {
+        /**
+         * elementString not use
+         * bystring = By Id/Name/etc
+         * selectorString = the value given by user like a written xpath or identifier
+         * actionstring = the action to perform like click or sendkeys(x)
+         * contentNameString = the new name for a cucumbercase
+         * choicebrowser = not used, was for manual or auto drive
+         */
+        String[] returnvalue = ["Error!", "Error!", "Error!", "Error!"]
+
+
+
+
+
+        if (choiceBrowser == "Manual") { //driver.findElement(By.cssSelector(cssstring1)).click();
+            try {
+
+                println "StartManual2"
+                String scriptBegin;
+                String scriptMid;
+                String scriptEnd;
+
+                //By.ById byIdvar = new By.ById("bannerLeft")
+
+
+                //webMethod.invoke(webElement);
+
+
+                switch (bystring) {
+                    case "className":
+
+                        WebElement webElement = browser2.getDriver().findElement(By.className(selectorString))
+                        returnvalue[2] = webElement.getProperties().toString();
+                        break
+                    case "cssSelector":
+                        returnvalue[2] = browser2.getDriver().findElement(By.cssSelector(selectorString)).getProperties().toString();
+                        break
+                    case "id":
+                        println "ID IS CALLED HERE"
+
+                        WebElement webElement = browser2.getDriver().findElement(By.id(selectorString))
+                        //returnvalue[2] = webElement.getProperties().toString();
+                        returnvalue[2] = preparedMethod(actionstring,webElement);
+                        break
+                    case "linkText":
+                        returnvalue[2] = browser2.getDriver().findElement(By.linkText(selectorString)).getProperties().toString();
+                        break
+                    case "name":
+                        returnvalue[2] = browser2.getDriver().findElement(By.name(selectorString)).getProperties().toString();
+                        break
+                    case "partialLinkText":
+                        returnvalue[2] = browser2.getDriver().findElement(By.partialLinkText(selectorString)).getProperties().toString();
+                        break;
+                    case "tagName":
+                        returnvalue[2] = browser2.getDriver().findElement(By.tagName(selectorString)).getProperties().toString();
+                        break
+                    case "xpath":
+                        returnvalue[2] = browser2.getDriver().findElement(By.xpath(selectorString)).getProperties().toString();
+                        break
+                }
+                //returnvalue[2] = browser2.getDriver().findElement(byIdvar).getProperties().toString();
+
+//                if (elementString == "") {
+//                    println "ja"
+//                    scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.browser2.getDriver().");
+//                    scriptMid = new String("findElement(By." + bystring + "(\"" + selectorString + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
+//                    scriptEnd = new String("}}");
+//                } else {//make:  overlayToevoegenNotitieAnoniem { $("div", id: contains("SUB008_1"))}
+//                    println "nee"
+//                    scriptBegin = new String("import ETS2.GroovyBrowserDaoETS2;import org.openqa.selenium.By;public class test{public static void main(String...args){GroovyBrowserDaoETS2 gb = new GroovyBrowserDaoETS2();gb.shellReturnString01 = gb.browser2.getDriver().");
+//                    scriptMid = new String("findElement(By." + bystring + "(\"" + selectorString + "\"))." + actionstring + ".toString();System.out.println(gb.shellReturnString01);");
+//                    scriptEnd = new String("}}");
+//                }
+//                String scriptTotal = scriptBegin + scriptMid + scriptEnd;
+//                //returnvalue[0] = scriptMid //real scrtiptmid, is real code
+////                returnvalue[0] = "@FindBy("+bystring+" = \"vrijeTekst2\")\n" +
+////                        "public WebElement "+contentNameString+";"
+//                returnvalue[0] = "@FindBy(" + bystring + " = \"" + selectorString + "\")\n" +
+//                        "public WebElement " + contentNameString + ";"
+//                returnvalue[1] = scriptMid //india style
+//                returnvalue[1] = "xPage." + contentNameString + "." + actionstring
+//                returnvalue[2] = shellReturnString01 //for scenetitle2 like information or exceptions
+//                returnvalue[3] = "hallo" //voor scenetitle2
+//                println "shellReturnString01====" + shellReturnString01
+//                println scriptTotal
+//                Binding binding = new Binding();
+//                GroovyShell shell = new GroovyShell(binding);
+//                Object value = shell.evaluate(scriptTotal);
+            }
+            catch (Exception e) {
+                println "Handling Exceptions"
+                //e.printStackTrace()
+                returnvalue[2] = e.stackTrace.toString();
+                System.out.println("Printing returnvalue2:"+returnvalue[2]);
+                //returnvalue[2] = e.localizedMessage.toString()
+                if (returnvalue[2].contains("no such element: Unable to locate element")) {
+                    returnvalue[3] = "Failed to locate"
+                } else returnvalue[3] = "Exception occurred"
+
+                if (returnvalue[2].contains("Cannot invoke method getDriver() on null object")) {
+                    returnvalue[2] = returnvalue[2] + " (Browser session is not started!)."
+                }
+                return returnvalue
+
+            }
+        }
+
+        //returnvalue[2] = GroovyBrowserDaoETS2.shellReturnString01;
         returnvalue[3] = "Action successful"
         return returnvalue
 

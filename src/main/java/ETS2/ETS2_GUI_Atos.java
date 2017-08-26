@@ -204,7 +204,7 @@ final HBox hBox5Try = new HBox(40);
         final TextField inputField02css2 = new TextField("outerHTML");//innerHTML was mooi.  getProperties niet goed. //displayed werkt als $(x).getproperty
         final TextField inputField03AgebElement = new TextField("");
         final TextField inputField03gebBy = new TextField("BySelector");
-        final TextField inputField04gebString = new TextField("nummer");//li.crossbrowser
+        final TextField inputField04gebString = new TextField("bannerLeft");//li.crossbrowser
         inputField04gebString.setMaxWidth(450);
         inputField04gebString.setMinWidth(450);
         final TextField inputField05gebAction = new TextField("getProperties()");
@@ -504,22 +504,25 @@ final HBox hBox5Try = new HBox(40);
         button11SpockGet.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 try {
-                    outputFieldResultTry.setStyle("-fx-background-color: grey;");
-                    outputFieldResultTry.setText("------");
-
                     //outputField1ActionText.setText(groovybrowser.doGebSpockAction(inputField03gebBy.getText(),inputField04gebString.getText(),inputField05gebAction.getText()));//werkt prima
                     String requestedAction = comboBoxActions.getValue().toString();
-                    if (comboBoxActions.getValue().toString().contains("STRING")) {
-                        requestedAction = requestedAction.replace("STRING", inputFieldExtraString.getText());
-                    }
                     if (comboBoxSelectors.getValue().toString().contains("cssSelector")|comboBoxSelectors.getValue().toString().contains("xpath")) {
                         inputField04gebString.setText(inputField04gebString.getText().replaceAll("\"", "'"));
                         System.out.println("XX");
                         //requestedAction = requestedAction.replaceAll("\"","'");
                     }
+                    if (comboBoxActions.getValue().toString().contains("STRING")) {
+                        System.out.println("CHECK03a = " + requestedAction);
+                        requestedAction = requestedAction.replace("STRING", inputFieldExtraString.getText());
+                        System.out.println("CHECK03b = " + requestedAction);
+                    }
+
                     System.out.println("CHECK01 = " + requestedAction);
                     //String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(),comboBoxSelectors.getValue().toString(),inputField04gebString.getText(),comboBoxActions.getValue().toString(),inputField06gebContentName.getText(),choiceShellOrManual);
-                    String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(), comboBoxSelectors.getValue().toString(), inputField04gebString.getText(), requestedAction, inputField06gebContentName.getText(), choiceShellOrManual);
+                    //TODO DIT WAS ORIGINAL //String[] result = groovybrowser.doGebSpockActionOnShell(inputField03AgebElement.getText(), comboBoxSelectors.getValue().toString(), inputField04gebString.getText(), requestedAction, inputField06gebContentName.getText(), choiceShellOrManual);
+                    String[] result = groovybrowser.doActionJava(inputField03AgebElement.getText(), comboBoxSelectors.getValue().toString(), inputField04gebString.getText(), requestedAction, inputField06gebContentName.getText(), choiceShellOrManual);
+
+
 
                     outputField1ActionText.setText(result[1]);
                     //outputField1ContentItem.setText(inputField06gebContentName.getText() + " " + result[0]);
@@ -621,7 +624,7 @@ final HBox hBox5Try = new HBox(40);
         primStage.show();
 
         //togglebutton01Shell.fire();
-        //button01OpenSession.fire();//auto start open url browser
+        button01OpenSession.fire();//auto start open url browser
 
     }
 
